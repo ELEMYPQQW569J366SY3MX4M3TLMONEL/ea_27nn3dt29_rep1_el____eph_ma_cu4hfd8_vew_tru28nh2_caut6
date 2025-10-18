@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>EMA</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+      }
+
+      body,
+      html {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #121212;
+        font-family: 'Roboto', sans-serif;
+        overflow: hidden;
+        color: #fff;
+      }
+
+      #login-wrapper {
+        width: 90%;
+        max-width: 400px;
+        background: #1E1E1E;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+      }
+
+      #login-wrapper img {
+        width: 100px;
+        margin-bottom: 1rem;
+      }
+
+      h1 {
+        font-weight: 500;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .lang-buttons {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 2rem;
+      }
+
+      .lang-buttons button {
+        flex: 1;
+        padding: 0.7rem;
+        border: none;
+        border-radius: 10px;
+        background: #2A2A2A;
+        color: #fff;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .lang-buttons button.active {
+        background: #4CAF50;
+      }
+
+      #continue-btn {
+        width: 100%;
+        padding: 0.8rem;
+        border: none;
+        border-radius: 12px;
+        background: #4CAF50;
+        color: #fff;
+        font-weight: 500;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-bottom: 2rem;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #continue-btn.loading::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border: 3px solid #fff;
+        border-top: 3px solid transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        right: 15px;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      input.material {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        margin-bottom: 1rem;
+        border-radius: 12px;
+        border: none;
+        background: #2A2A2A;
+        color: #fff;
+        font-size: 1rem;
+        outline: none;
+      }
+
+      input.material::placeholder {
+        color: #aaa;
+      }
+
+      button.action-btn {
+        width: 100%;
+        padding: 0.8rem;
+        border: none;
+        border-radius: 12px;
+        background: #4CAF50;
+        color: #fff;
+        font-weight: 500;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-top: 1rem;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      button.action-btn.loading::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border: 3px solid #fff;
+        border-top: 3px solid transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        right: 15px;
+      }
+
+      .link-btn {
+        color: #4CAF50;
+        cursor: pointer;
+        text-decoration: underline;
+        margin-top: 1rem;
+      }
+
+      #qr-scan {
+        background: #2A2A2A;
+        padding: 0.5rem;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .modal-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+      }
+
+      .modal {
+        background: #1E1E1E;
+        padding: 2rem;
+        border-radius: 20px;
+        width: 90%;
+        max-width: 350px;
+        text-align: center;
+      }
+
+      .modal input {
+        margin-bottom: 1rem;
+        width: 100%;
+        padding: 0.7rem;
+        border-radius: 12px;
+        border: none;
+        background: #2A2A2A;
+        color: #fff;
+      }
+
+      .modal button {
+        margin-top: 1rem;
+        width: 100%;
+        padding: 0.8rem;
+        border: none;
+        border-radius: 12px;
+        background: #4CAF50;
+        color: #fff;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .snackbar {
+        visibility: hidden;
+        min-width: 200px;
+        background: #333;
+        color: #fff;
+        text-align: center;
+        border-radius: 10px;
+        padding: 0.7rem;
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+      }
+
+      .snackbar.show {
+        visibility: visible;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+      }
+
+      @keyframes fadein {
+        from {
+          bottom: 0;
+          opacity: 0;
+        }
+
+        to {
+          bottom: 20px;
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeout {
+        from {
+          bottom: 20px;
+          opacity: 1;
+        }
+
+        to {
+          bottom: 0;
+          opacity: 0;
+        }
+      }
+
+      @media(max-width:480px) {
+        #login-wrapper {
+          padding: 1.5rem;
+        }
+
+        input {
+          padding: 0.7rem;
+        }
+
+        button {
+          padding: 0.7rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="login-wrapper">
+      <img src="https://raw.githubusercontent.com/emaapp/ea_27nn3dt29_rep1_el____eph_ma_cu4hfd8_vew_tru28nh2_caut6/refs/heads/main/assets/images/logo_main%20(1).png" alt="EMA Logo">
+      <h1 id="welcome-text">Welcome to EMA</h1>
+      <div class="lang-buttons">
+        <button data-lang="si" class="active">Sinhala</button>
+        <button data-lang="ta">Tamil</button>
+        <button data-lang="en">English</button>
+      </div>
+      <button id="continue-btn">Continue</button>
+      <div id="login-form" style="display:none;width:100%;margin-top:1rem;">
+        <input type="text" id="ema-id" class="material" placeholder="123456-E">
+        <div id="qr-scan">Scan E-Card</div>
+        <button id="login-btn" class="action-btn">Login</button>
+        <button id="register-btn" class="action-btn">Register</button>
+        <div class="link-btn" id="forgot-btn">Forgot ID</div>
+      </div>
+    </div>
+    <div class="modal-bg" id="modal-bg">
+      <div class="modal" id="modal-content">
+        <h3 id="modal-title">Enter Details</h3>
+        <input type="text" id="modal-phone" placeholder="Phone Number">
+        <input type="text" id="modal-ic" placeholder="ID Card Number">
+        <button id="modal-submit" class="action-btn">Submit</button>
+      </div>
+    </div>
+    <div id="snackbar" class="snackbar"></div>
+    <script type="module">
+      import {
+        initializeApp
+      } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        get,
+        child
+      } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+      import {
+        getAnalytics
+      } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics.js";
+      const firebaseConfig = {
+        apiKey: "AIzaSyCIE_grRa0S-0zC4KVuDwlbgMVRJhIAzKI",
+        authDomain: "emav1-cc8f8.firebaseapp.com",
+        databaseURL: "https://emav1-cc8f8-default-rtdb.firebaseio.com/",
+        projectId: "emav1-cc8f8",
+        storageBucket: "emav1-cc8f8.appspot.com",
+        messagingSenderId: "113389356749",
+        appId: "1:113389356749:web:16faff520fb638f45e8b84",
+        measurementId: "G-7EYXE00MRD"
+      };
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const db = getDatabase(app);
+      const snackbar = (msg) => {
+        const sb = document.getElementById('snackbar');
+        sb.innerText = msg;
+        sb.className = 'snackbar show';
+        setTimeout(() => {
+          sb.className = 'snackbar';
+        }, 3000);
+      };
+      let selectedLang = 'si';
+      document.querySelectorAll('.lang-buttons button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.lang-buttons button').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          selectedLang = btn.dataset.lang;
+        });
+      });
+      document.getElementById('continue-btn').addEventListener('click', async () => {
+        const btn = document.getElementById('continue-btn');
+        btn.classList.add('loading');
+        try {
+          const texts = ["Welcome to EMA", "Enter your EMA Id", "Scan E-Card", "Login", "Register", "Forgot ID"];
+          const translations = {};
+          for (let t of texts) {
+            const resp = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(t)}&langpair=en|${selectedLang}`);
+            const data = await resp.json();
+            translations[t] = data.responseData.translatedText;
+          }
+          document.getElementById('welcome-text').innerText = translations["Welcome to EMA"];
+          document.getElementById('ema-id').placeholder = translations["Enter your EMA Id"];
+          document.getElementById('qr-scan').innerText = translations["Scan E-Card"];
+          document.getElementById('login-btn').innerText = translations["Login"];
+          document.getElementById('register-btn').innerText = translations["Register"];
+          document.getElementById('forgot-btn').innerText = translations["Forgot ID"];
+          btn.classList.remove('loading');
+          document.getElementById('login-form').style.display = 'flex';
+          if (window.Capacitor && Capacitor.Plugins && Capacitor.Plugins.Storage) {
+            const {
+              Storage
+            } = Capacitor.Plugins;
+            await Storage.set({
+              key: 'emalang',
+              value: selectedLang
+            });
+          }
+        } catch (e) {
+          btn.classList.remove('loading');
+          snackbar('Translation failed');
+        }
+      });
+      document.getElementById('login-btn').addEventListener('click', async () => {
+        const emaid = document.getElementById('ema-id').value.trim();
+        if (!emaid) {
+          snackbar('Enter EMA ID');
+          return;
+        }
+        const btn = document.getElementById('login-btn');
+        btn.classList.add('loading');
+        try {
+          const dbRef = ref(db);
+          const snapshot = await get(child(dbRef, `users/${emaid}`));
+          if (snapshot.exists()) {
+            if (window.Capacitor && Capacitor.Plugins && Capacitor.Plugins.Storage) {
+              const {
+                Storage
+              } = Capacitor.Plugins;
+              await Storage.set({
+                key: 'emaid',
+                value: emaid
+              });
+              await Storage.set({
+                key: 'emaid_signal',
+                value: emaid
+              });
+            }
+            window.location.href = 'home.html';
+          } else {
+            snackbar('EMA ID not found');
+          }
+        } catch (e) {
+          snackbar('Network error');
+        }
+        btn.classList.remove('loading');
+      });
+      document.getElementById('register-btn').addEventListener('click', () => window.location.href = 'register.html');
+      const modalBg = document.getElementById('modal-bg');
+      const modalSubmit = document.getElementById('modal-submit');
+      document.getElementById('forgot-btn').addEventListener('click', () => {
+        modalBg.style.display = 'flex';
+      });
+      modalSubmit.addEventListener('click', async () => {
+        const phone = document.getElementById('modal-phone').value.trim();
+        const ic = document.getElementById('modal-ic').value.trim();
+        if (!phone || !ic) {
+          snackbar('Enter all details');
+          return;
+        }
+        modalSubmit.classList.add('loading');
+        try {
+          const dbRef = ref(db);
+          const snapshot = await get(child(dbRef, 'users'));
+          let foundId = null;
+          snapshot.forEach(s => {
+            const v = s.val();
+            if (v.phone === phone && v.ic === ic) foundId = s.key;
+          });
+          if (foundId) {
+            if (window.Capacitor && Capacitor.Plugins && Capacitor.Plugins.Storage) {
+              const {
+                Storage
+              } = Capacitor.Plugins;
+              await Storage.set({
+                key: 'emaid',
+                value: foundId
+              });
+              await Storage.set({
+                key: 'emaid_signal',
+                value: foundId
+              });
+            }
+            window.location.href = 'home.html';
+          } else {
+            snackbar('No matching EMA ID');
+          }
+        } catch (e) {
+          snackbar('Network error');
+        }
+        modalSubmit.classList.remove('loading');
+        modalBg.style.display = 'none';
+      });
+      document.getElementById('qr-scan').addEventListener('click', async () => {
+        // integrate QR Scanner plugin; demo placeholder:
+        document.getElementById('ema-id').value = '123456-E';
+      });
+    </script>
+  </body>
+</html>
