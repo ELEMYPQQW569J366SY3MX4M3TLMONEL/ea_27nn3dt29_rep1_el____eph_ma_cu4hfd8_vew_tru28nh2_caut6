@@ -243,100 +243,13 @@
             to { transform: rotate(360deg); }
         }
 
-        .popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .popup-content {
-            background-color: var(--md-sys-color-surface);
-            border-radius: var(--md-sys-shape-corner-large);
-            padding: 24px;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: var(--md-sys-elevation-level3);
-            text-align: center;
-        }
-
-        .popup-title {
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 24px;
-            line-height: 32px;
-            color: var(--md-sys-color-primary);
-            margin-bottom: 16px;
-        }
-
-        .popup-message {
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 20px;
-            color: var(--md-sys-color-on-surface);
-            margin-bottom: 16px;
-        }
-
-        .popup-message.warning {
-            color: #b00020;
-        }
-
-        .ema-id {
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 22px;
-            line-height: 28px;
-            color: var(--md-sys-color-primary);
-            margin: 16px 0;
-            padding: 12px;
-            background-color: var(--md-sys-color-primary-container);
-            border-radius: var(--md-sys-shape-corner-small);
-        }
-
-        .popup-button {
-            background-color: var(--md-sys-color-primary);
-            color: var(--md-sys-color-on-primary);
-            border: none;
-            border-radius: var(--md-sys-shape-corner-small);
-            padding: 12px 24px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            font-size: 14px;
-            line-height: 20px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            margin-top: 8px;
-        }
-
-        .popup-button:hover {
-            background-color: #388e3c;
-        }
-
         .card-container {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .card-content {
-            display: flex;
             flex-direction: column;
             align-items: center;
             gap: 20px;
+            width: 100%;
+            max-width: 600px;
         }
 
         .card {
@@ -366,6 +279,17 @@
         @keyframes shimmer {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+
+        .card.capturing::before,
+        .card.capturing .card-profile::after {
+            display: none;
+        }
+
+        .card.capturing *,
+        .card.capturing *::before,
+        .card.capturing *::after {
+            animation: none !important;
         }
 
         .card-left {
@@ -604,7 +528,7 @@
         <img src="https://raw.githubusercontent.com/emaapp/ea_27nn3dt29_rep1_el____eph_ma_cu4hfd8_vew_tru28nh2_caut6/refs/heads/main/assets/images/logo_main%20(1).png" alt="EMA Logo" class="logo">
     </div>
 
-    <div class="registration-container">
+    <div class="registration-container" id="registrationContainer">
         <h1 class="registration-title">Register for EMA</h1>
         
         <div class="profile-upload">
@@ -661,46 +585,33 @@
         </form>
     </div>
 
+    <div class="card-container" id="cardContainer">
+        <div id="eCard" class="card">
+            <div class="card-decoration"></div>
+            <div class="card-decoration-2"></div>
+            <div class="card-left">
+                <div class="card-logo-container">
+                    <img src="https://raw.githubusercontent.com/emaapp/ea_27nn3dt29_rep1_el____eph_ma_cu4hfd8_vew_tru28nh2_caut6/refs/heads/main/assets/images/logo_main%20(1).png" alt="EMA Logo" class="card-logo">
+                    <span class="card-logo-text">EMA</span>
+                </div>
+                <div class="card-name" id="cardName"></div>
+                <div class="card-ema-id" id="cardEmaId"></div>
+            </div>
+            <div class="card-right">
+                <div class="card-profile-container">
+                    <img id="cardProfile" class="card-profile" alt="Profile">
+                </div>
+                <div id="cardQr" class="card-qr"></div>
+            </div>
+        </div>
+        <button class="download-button" id="downloadCard">
+            <span class="material-icons">download</span>
+            Download E-Card
+        </button>
+    </div>
+
     <div class="loader-container" id="loader">
         <div class="loader"></div>
-    </div>
-
-    <div class="popup" id="successPopup">
-        <div class="popup-content">
-            <h2 class="popup-title">Registration Successful!</h2>
-            <p class="popup-message">Your EMA ID is:</p>
-            <div class="ema-id" id="emaIdDisplay"></div>
-            <p class="popup-message warning">Remember this EMA number, you will need it in the future.</p>
-            <p class="popup-message warning">මෙම EMA අංකය මතක තබා ගන්න, අනාගතයේදී ඔබට එය අවශ්‍ය වනු ඇත.</p>
-            <button class="popup-button" id="getECardButton">Get E-Card</button>
-        </div>
-    </div>
-
-    <div class="card-container" id="cardContainer">
-        <div class="card-content">
-            <div id="eCard" class="card">
-                <div class="card-decoration"></div>
-                <div class="card-decoration-2"></div>
-                <div class="card-left">
-                    <div class="card-logo-container">
-                        <img src="https://raw.githubusercontent.com/emaapp/ea_27nn3dt29_rep1_el____eph_ma_cu4hfd8_vew_tru28nh2_caut6/refs/heads/main/assets/images/logo_main%20(1).png" alt="EMA Logo" class="card-logo">
-                        <span class="card-logo-text">EMA</span>
-                    </div>
-                    <div class="card-name" id="cardName"></div>
-                    <div class="card-ema-id" id="cardEmaId"></div>
-                </div>
-                <div class="card-right">
-                    <div class="card-profile-container">
-                        <img id="cardProfile" class="card-profile" alt="Profile">
-                    </div>
-                    <div id="cardQr" class="card-qr"></div>
-                </div>
-            </div>
-            <button class="download-button" id="downloadCard">
-                <span class="material-icons">download</span>
-                Download E-Card
-            </button>
-        </div>
     </div>
 
     <div class="snackbar" id="snackbar"></div>
@@ -931,8 +842,23 @@
                     .then(() => {
                         console.log("User data saved successfully");
                         document.getElementById('loader').style.display = 'none';
-                        document.getElementById('emaIdDisplay').textContent = emaId;
-                        document.getElementById('successPopup').style.display = 'flex';
+                        
+                        document.getElementById('registrationContainer').style.display = 'none';
+                        document.getElementById('cardContainer').style.display = 'flex';
+                        
+                        document.getElementById('cardName').textContent = name;
+                        document.getElementById('cardEmaId').textContent = `EMA ID: ${emaId}`;
+                        document.getElementById('cardProfile').src = profileImageData;
+                        
+                        document.getElementById('cardQr').innerHTML = '';
+                        new QRCode(document.getElementById('cardQr'), {
+                            text: emaId,
+                            width: 70,
+                            height: 70,
+                            colorDark: "#000000",
+                            colorLight: "#ffffff",
+                            correctLevel: QRCode.CorrectLevel.H
+                        });
                     })
                     .catch(error => {
                         console.error("Error saving user data:", error);
@@ -942,40 +868,19 @@
             }
         });
 
-        document.getElementById('getECardButton').addEventListener('click', function() {
-            document.getElementById('successPopup').style.display = 'none';
-            
-            const name = document.getElementById('name').value.trim();
-            
-            document.getElementById('cardName').textContent = name;
-            document.getElementById('cardEmaId').textContent = `EMA ID: ${emaId}`;
-            document.getElementById('cardProfile').src = profileImageData;
-            
-            document.getElementById('cardQr').innerHTML = '';
-            new QRCode(document.getElementById('cardQr'), {
-                text: emaId,
-                width: 70,
-                height: 70,
-                colorDark: "#000000",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.H
-            });
-            
-            document.getElementById('cardContainer').style.display = 'flex';
-        });
-
         document.getElementById('downloadCard').addEventListener('click', function() {
             const cardElement = document.getElementById('eCard');
             const downloadButton = document.getElementById('downloadCard');
             downloadButton.disabled = true;
             downloadButton.innerHTML = '<span class="material-icons">hourglass_empty</span> Generating...';
 
+            cardElement.classList.add('capturing');
+
             setTimeout(() => {
-                console.log("Attempting to generate canvas with html2canvas...");
                 html2canvas(cardElement, {
                     scale: 2,
                     useCORS: true,
-                    logging: true,
+                    logging: false,
                     width: 533,
                     height: 300,
                     backgroundColor: null,
@@ -994,10 +899,12 @@
                 }).catch(error => {
                     console.error("Error generating card:", error);
                     showWarningPopup("Failed to generate card. Please try again.");
+                }).finally(() => {
+                    cardElement.classList.remove('capturing');
                     downloadButton.disabled = false;
                     downloadButton.innerHTML = '<span class="material-icons">download</span> Download E-Card';
                 });
-            }, 500);
+            }, 200);
         });
 
         function generateEmaId() {
