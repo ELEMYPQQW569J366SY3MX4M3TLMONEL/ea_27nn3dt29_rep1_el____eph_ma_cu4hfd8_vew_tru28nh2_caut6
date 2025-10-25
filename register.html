@@ -129,18 +129,21 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
+            overflow: hidden;
             padding: 20px;
         }
 
         .logo-container {
-            margin-bottom: 24px;
+            margin-bottom: 16px;
             text-align: center;
         }
 
         .logo {
-            max-width: 200px;
-            height: auto;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
         }
 
         .registration-container {
@@ -150,6 +153,8 @@
             padding: 24px;
             width: 100%;
             max-width: 500px;
+            max-height: calc(100vh - 140px);
+            overflow-y: auto;
         }
 
         .registration-title {
@@ -380,7 +385,7 @@
             border-radius: var(--md-sys-shape-corner-large);
             padding: 24px;
             width: 90%;
-            max-width: 600px;
+            max-width: 500px;
             box-shadow: var(--md-sys-elevation-level3);
             text-align: center;
         }
@@ -388,96 +393,39 @@
         .card {
             background: linear-gradient(135deg, var(--md-sys-color-primary), var(--md-sys-color-secondary));
             border-radius: var(--md-sys-shape-corner-medium);
-            padding: 20px;
+            padding: 30px;
             color: white;
             width: 100%;
-            max-width: 500px;
             aspect-ratio: 16/9;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
+            align-items: center;
             position: relative;
             overflow: hidden;
         }
 
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .card-profile {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: cover;
+            margin-bottom: 20px;
         }
 
-        .card-logo {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-        }
-
-        .card-title {
+        .card-name {
             font-family: var(--md-sys-typescale-title-large-font-family-name);
             font-weight: var(--md-sys-typescale-title-large-font-weight);
             font-size: var(--md-sys-typescale-title-large-font-size);
             line-height: var(--md-sys-typescale-title-large-line-height);
-        }
-
-        .card-body {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .card-info {
-            text-align: left;
-        }
-
-        .card-name {
-            font-family: var(--md-sys-typescale-title-medium-font-family-name);
-            font-weight: var(--md-sys-typescale-title-medium-font-weight);
-            font-size: var(--md-sys-typescale-title-medium-font-size);
-            line-height: var(--md-sys-typescale-title-medium-line-height);
-            margin-bottom: 8px;
-        }
-
-        .card-details {
-            font-family: var(--md-sys-typescale-body-medium-font-family-name);
-            font-weight: var(--md-sys-typescale-body-medium-font-weight);
-            font-size: var(--md-sys-typescale-body-medium-font-size);
-            line-height: var(--md-sys-typescale-body-medium-line-height);
-            margin-bottom: 4px;
-        }
-
-        .card-ema-id {
-            font-family: var(--md-sys-typescale-title-medium-font-family-name);
-            font-weight: var(--md-sys-typescale-title-medium-font-weight);
-            font-size: var(--md-sys-typescale-title-medium-font-size);
-            line-height: var(--md-sys-typescale-title-medium-line-height);
-            margin-top: 8px;
-        }
-
-        .card-profile {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: 3px solid white;
-            object-fit: cover;
-        }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            margin-bottom: 20px;
         }
 
         .card-qr {
-            width: 80px;
-            height: 80px;
             background-color: white;
-            padding: 5px;
+            padding: 10px;
             border-radius: var(--md-sys-shape-corner-small);
-        }
-
-        .card-buttons {
-            display: flex;
-            gap: 10px;
         }
 
         .card-button {
@@ -492,16 +440,72 @@
             line-height: var(--md-sys-typescale-label-large-line-height);
             cursor: pointer;
             transition: background-color 0.2s;
+            margin-top: 20px;
         }
 
         .card-button:hover {
             background-color: rgba(255, 255, 255, 0.8);
         }
 
-        @media (max-width: 600px) {
-            .card {
-                max-width: 100%;
-            }
+        .snackbar {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background-color: #323232;
+            color: white;
+            padding: 16px 24px;
+            border-radius: var(--md-sys-shape-corner-small);
+            box-shadow: var(--md-sys-elevation-level3);
+            z-index: 2000;
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .snackbar.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .warning-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 24px;
+            border-radius: var(--md-sys-shape-corner-medium);
+            box-shadow: var(--md-sys-elevation-level3);
+            z-index: 2000;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .warning-popup.show {
+            display: block;
+        }
+
+        .warning-popup-title {
+            color: #b00020;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .warning-popup-message {
+            color: var(--md-sys-color-on-surface);
+            margin-bottom: 16px;
+        }
+
+        .warning-popup-button {
+            background-color: var(--md-sys-color-primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: var(--md-sys-shape-corner-small);
+            cursor: pointer;
         }
     </style>
 </head>
@@ -585,29 +589,19 @@
     <div class="card-container" id="cardContainer">
         <div class="card-content">
             <div id="eCard" class="card">
-                <div class="card-header">
-                    <img src="https://raw.githubusercontent.com/emaapp/ea_27nn3dt29_rep1_el____eph_ma_cu4hfd8_vew_tru28nh2_caut6/refs/heads/main/assets/images/logo_main%20(1).png" alt="EMA Logo" class="card-logo">
-                    <div class="card-title">EMA Member Card</div>
-                </div>
-                <div class="card-body">
-                    <div class="card-info">
-                        <div class="card-name" id="cardName"></div>
-                        <div class="card-details" id="cardPhone"></div>
-                        <div class="card-details" id="cardEmail"></div>
-                        <div class="card-details" id="cardLocation"></div>
-                        <div class="card-ema-id" id="cardEmaId"></div>
-                    </div>
-                    <img id="cardProfile" class="card-profile" alt="Profile">
-                </div>
-                <div class="card-footer">
-                    <div id="cardQr" class="card-qr"></div>
-                    <div class="card-buttons">
-                        <button class="card-button" id="downloadCard">Download</button>
-                        <button class="card-button" id="closeCard">Close</button>
-                    </div>
-                </div>
+                <img id="cardProfile" class="card-profile" alt="Profile">
+                <div class="card-name" id="cardName"></div>
+                <div id="cardQr" class="card-qr"></div>
+                <button class="card-button" id="closeCard">Close</button>
             </div>
         </div>
+    </div>
+
+    <div class="snackbar" id="snackbar"></div>
+    <div class="warning-popup" id="warningPopup">
+        <div class="warning-popup-title">Warning</div>
+        <div class="warning-popup-message" id="warningMessage"></div>
+        <button class="warning-popup-button" onclick="closeWarningPopup()">OK</button>
     </div>
 
     <script>
@@ -648,6 +642,27 @@
 
         let profileImageData = null;
         let emaId = null;
+
+        function showSnackbar(message) {
+            const snackbar = document.getElementById('snackbar');
+            snackbar.textContent = message;
+            snackbar.classList.add('show');
+            setTimeout(() => {
+                snackbar.classList.remove('show');
+            }, 3000);
+        }
+
+        function showWarningPopup(message) {
+            const warningPopup = document.getElementById('warningPopup');
+            const warningMessage = document.getElementById('warningMessage');
+            warningMessage.textContent = message;
+            warningPopup.classList.add('show');
+        }
+
+        function closeWarningPopup() {
+            const warningPopup = document.getElementById('warningPopup');
+            warningPopup.classList.remove('show');
+        }
 
         document.getElementById('province').addEventListener('change', function() {
             const province = this.value;
@@ -782,7 +797,7 @@
             }
             
             if (!profileImageData) {
-                alert('Please upload a profile image');
+                showWarningPopup('Please upload a profile image');
                 isValid = false;
             }
             
@@ -815,7 +830,7 @@
                     .catch(error => {
                         console.error("Error saving user data:", error);
                         document.getElementById('loader').style.display = 'none';
-                        alert('Registration failed. Please try again.');
+                        showWarningPopup('Registration failed. Please try again.');
                     });
             }
         });
@@ -824,26 +839,15 @@
             document.getElementById('successPopup').style.display = 'none';
             
             const name = document.getElementById('name').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const province = document.getElementById('province').value;
-            const district = document.getElementById('district').value;
-            
-            const provinceName = document.querySelector(`#province option[value="${province}"]`).textContent;
-            const districtName = document.querySelector(`#district option[value="${district}"]`).textContent;
             
             document.getElementById('cardName').textContent = name;
-            document.getElementById('cardPhone').textContent = phone;
-            document.getElementById('cardEmail').textContent = email;
-            document.getElementById('cardLocation').textContent = `${districtName}, ${provinceName}`;
-            document.getElementById('cardEmaId').textContent = `EMA ID: ${emaId}`;
             document.getElementById('cardProfile').src = profileImageData;
             
             document.getElementById('cardQr').innerHTML = '';
             new QRCode(document.getElementById('cardQr'), {
                 text: emaId,
-                width: 70,
-                height: 70,
+                width: 80,
+                height: 80,
                 colorDark: "#000000",
                 colorLight: "#ffffff",
                 correctLevel: QRCode.CorrectLevel.H
@@ -854,27 +858,7 @@
 
         document.getElementById('closeCard').addEventListener('click', function() {
             document.getElementById('cardContainer').style.display = 'none';
-        });
-
-        document.getElementById('downloadCard').addEventListener('click', function() {
-            const cardElement = document.getElementById('eCard');
-            
-            html2canvas(cardElement, {
-                width: 500,
-                height: 281,
-                scale: 2
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = `EMA_Card_${emaId}.png`;
-                link.href = canvas.toDataURL();
-                link.click();
-                
-                console.log("E-Card downloaded successfully");
-                
-                setTimeout(() => {
-                    window.location.href = 'login.html';
-                }, 1000);
-            });
+            window.location.href = 'login.html';
         });
 
         function generateEmaId() {
