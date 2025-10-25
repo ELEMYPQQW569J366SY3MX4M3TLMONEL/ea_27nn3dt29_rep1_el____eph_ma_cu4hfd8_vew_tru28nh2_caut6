@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>EMA Registration</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
@@ -109,7 +109,7 @@
 
         .registration-title {
             font-family: 'Inter', sans-serif;
-            font-weight: 400;
+            font-weight: 600;
             font-size: 28px;
             line-height: 36px;
             color: var(--md-sys-color-primary);
@@ -124,7 +124,7 @@
         .form-label {
             display: block;
             font-family: 'Inter', sans-serif;
-            font-weight: 400;
+            font-weight: 500;
             font-size: 14px;
             line-height: 20px;
             color: var(--md-sys-color-on-surface-variant);
@@ -204,7 +204,7 @@
             border-radius: var(--md-sys-shape-corner-small);
             padding: 12px 24px;
             font-family: 'Inter', sans-serif;
-            font-weight: 400;
+            font-weight: 500;
             font-size: 14px;
             line-height: 20px;
             cursor: pointer;
@@ -268,7 +268,7 @@
 
         .popup-title {
             font-family: 'Inter', sans-serif;
-            font-weight: 400;
+            font-weight: 600;
             font-size: 24px;
             line-height: 32px;
             color: var(--md-sys-color-primary);
@@ -290,7 +290,7 @@
 
         .ema-id {
             font-family: 'Inter', sans-serif;
-            font-weight: 400;
+            font-weight: 600;
             font-size: 22px;
             line-height: 28px;
             color: var(--md-sys-color-primary);
@@ -307,7 +307,7 @@
             border-radius: var(--md-sys-shape-corner-small);
             padding: 12px 24px;
             font-family: 'Inter', sans-serif;
-            font-weight: 400;
+            font-weight: 500;
             font-size: 14px;
             line-height: 20px;
             cursor: pointer;
@@ -340,82 +340,187 @@
         }
 
         .card {
-            background: linear-gradient(135deg, var(--md-sys-color-primary), var(--md-sys-color-secondary));
-            border-radius: var(--md-sys-shape-corner-medium);
-            padding: 20px;
+            background: linear-gradient(135deg, #2e7d32 0%, #43a047 25%, #66bb6a 50%, #81c784 75%, #a5d6a7 100%);
+            border-radius: 20px;
+            padding: 0;
             color: white;
             width: 533px;
             height: 300px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
             position: relative;
             overflow: hidden;
-            box-shadow: var(--md-sys-elevation-level3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .card-info {
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .card-left {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
             justify-content: center;
-            height: 100%;
-            padding-left: 20px;
+            padding: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-logo-container {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .card-logo-text {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 1px;
         }
 
         .card-name {
             font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            font-size: 24px;
-            line-height: 32px;
-            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 28px;
+            line-height: 34px;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .card-ema-id {
             font-family: 'Inter', sans-serif;
-            font-weight: 400;
+            font-weight: 500;
             font-size: 16px;
             line-height: 24px;
-            opacity: 0.9;
+            opacity: 0.95;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+
+        .card-right {
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-profile-container {
+            position: relative;
+            margin-bottom: 20px;
         }
 
         .card-profile {
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            border: 4px solid white;
+            border: 4px solid rgba(255, 255, 255, 0.9);
             object-fit: cover;
-            box-shadow: var(--md-sys-elevation-level2);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-profile::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            z-index: -1;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .card-qr {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            width: 80px;
-            height: 80px;
             background-color: white;
-            padding: 5px;
-            border-radius: var(--md-sys-shape-corner-small);
+            padding: 8px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-decoration {
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        .card-decoration-2 {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
         }
 
         .download-button {
-            background-color: var(--md-sys-color-primary);
+            background: linear-gradient(135deg, var(--md-sys-color-primary), #66bb6a);
             color: var(--md-sys-color-on-primary);
             border: none;
-            border-radius: var(--md-sys-shape-corner-small);
-            padding: 12px 24px;
+            border-radius: 30px;
+            padding: 14px 32px;
             font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            font-size: 14px;
+            font-weight: 600;
+            font-size: 16px;
             line-height: 20px;
             cursor: pointer;
-            transition: background-color 0.2s;
-            box-shadow: var(--md-sys-elevation-level2);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 16px rgba(76, 175, 80, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .download-button:hover {
-            background-color: #388e3c;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(76, 175, 80, 0.4);
+        }
+
+        .download-button:active {
+            transform: translateY(0);
+        }
+
+        .download-button .material-icons {
+            font-size: 20px;
         }
 
         .snackbar {
@@ -574,14 +679,27 @@
     <div class="card-container" id="cardContainer">
         <div class="card-content">
             <div id="eCard" class="card">
-                <div class="card-info">
+                <div class="card-decoration"></div>
+                <div class="card-decoration-2"></div>
+                <div class="card-left">
+                    <div class="card-logo-container">
+                        <img src="https://raw.githubusercontent.com/emaapp/ea_27nn3dt29_rep1_el____eph_ma_cu4hfd8_vew_tru28nh2_caut6/refs/heads/main/assets/images/logo_main%20(1).png" alt="EMA Logo" class="card-logo">
+                        <span class="card-logo-text">EMA</span>
+                    </div>
                     <div class="card-name" id="cardName"></div>
                     <div class="card-ema-id" id="cardEmaId"></div>
                 </div>
-                <img id="cardProfile" class="card-profile" alt="Profile">
-                <div id="cardQr" class="card-qr"></div>
+                <div class="card-right">
+                    <div class="card-profile-container">
+                        <img id="cardProfile" class="card-profile" alt="Profile">
+                    </div>
+                    <div id="cardQr" class="card-qr"></div>
+                </div>
             </div>
-            <button class="download-button" id="downloadCard">Download E-Card</button>
+            <button class="download-button" id="downloadCard">
+                <span class="material-icons">download</span>
+                Download E-Card
+            </button>
         </div>
     </div>
 
@@ -683,7 +801,8 @@
                         const canvas = document.createElement('canvas');
                         const ctx = canvas.getContext('2d');
                         
-                        const maxSize = 800;
+                        // More aggressive compression
+                        const maxSize = 400; // Reduced from 800
                         let width = img.width;
                         let height = img.height;
                         
@@ -702,13 +821,17 @@
                         canvas.width = width;
                         canvas.height = height;
                         
+                        // Apply blur for better compression
+                        ctx.filter = 'blur(0.5px)';
                         ctx.drawImage(img, 0, 0, width, height);
                         
-                        let quality = 0.8;
+                        // Start with very low quality for maximum compression
+                        let quality = 0.3; // Reduced from 0.8
                         let dataUrl = canvas.toDataURL('image/jpeg', quality);
                         
-                        while (dataUrl.length > 100000 && quality > 0.1) {
-                            quality -= 0.1;
+                        // Target much smaller file size (50KB instead of 100KB)
+                        while (dataUrl.length > 50000 && quality > 0.05) {
+                            quality -= 0.05;
                             dataUrl = canvas.toDataURL('image/jpeg', quality);
                         }
                         
@@ -849,7 +972,7 @@
             const cardElement = document.getElementById('eCard');
             const downloadButton = document.getElementById('downloadCard');
             downloadButton.disabled = true;
-            downloadButton.textContent = 'Generating...';
+            downloadButton.innerHTML = '<span class="material-icons">hourglass_empty</span> Generating...';
 
             setTimeout(() => {
                 html2canvas(cardElement, {
@@ -857,11 +980,12 @@
                     useCORS: true,
                     logging: false,
                     width: 533,
-                    height: 300
+                    height: 300,
+                    backgroundColor: null
                 }).then(canvas => {
                     const link = document.createElement('a');
                     link.download = `EMA_Card_${emaId}.png`;
-                    link.href = canvas.toDataURL('image/png');
+                    link.href = canvas.toDataURL('image/png', 0.95);
                     link.click();
                     
                     console.log("E-Card downloaded successfully. Dimensions:", canvas.width, "x", canvas.height);
@@ -873,7 +997,7 @@
                     console.error("Error generating card:", error);
                     showWarningPopup("Failed to generate card. Please try again.");
                     downloadButton.disabled = false;
-                    downloadButton.textContent = 'Download E-Card';
+                    downloadButton.innerHTML = '<span class="material-icons">download</span> Download E-Card';
                 });
             }, 500);
         });
