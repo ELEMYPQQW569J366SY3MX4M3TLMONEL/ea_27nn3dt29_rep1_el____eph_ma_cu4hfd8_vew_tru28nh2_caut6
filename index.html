@@ -1,69 +1,23 @@
+<!--This code is written by Aveesha Ninsara, who is the developer of EMA-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EMA</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background-color: #000;
-      font-family: sans-serif;
-    }
-
-    #logo {
-      width: 250px;
-      height: 250px;
-      margin-bottom: 50px;
-    }
-
-    #loadingBarContainer {
-      width: 80%;
-      height: 4px;
-      background-color: #333;
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    #loadingBar {
-      width: 0%;
-      height: 100%;
-      background-color: #fff;
-      transition: width 3s linear;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>EMA Splash</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}body{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background-color:#fff;font-family:sans-serif;overflow:hidden}#logo{width:150px;height:150px;margin-bottom:50px}#loadingBarContainer{width:80%;height:4px;background-color:#eee;border-radius:2px;overflow:hidden}#loadingBar{width:0%;height:100%;background-color:#000;animation:load 1s linear infinite}@keyframes load{0%{transform:translateX(-100%)}50%{transform:translateX(0)}100%{transform:translateX(100%)}}</style>
 </head>
-<body>
-  <img id="logo" src="https://raw.githubusercontent.com/emaapp/ea_27nn3dt29_rep1_el____eph_ma_cu4hfd8_vew_tru28nh2_caut6/refs/heads/main/assets/images/logo_main%20(1).png" alt="EMA Logo">
-  
-  <div id="loadingBarContainer">
-    <div id="loadingBar"></div>
-  </div>
-
-  <script>
-    const loadingBar = document.getElementById('loadingBar');
-    setTimeout(() => {
-      loadingBar.style.width = '100%';
-    }, 50);
-
-    setTimeout(() => {
-      const emaId = localStorage.getItem('emaid');
-      if (emaId && emaId.trim() !== "") {
-        window.location.href = 'home.html';
-      } else {
-        window.location.href = 'login.html';
-      }
-    }, 3000);
-  </script>
+<body oncontextmenu="return false;" onselectstart="return false;" ondragstart="return false;" ongesturestart="return false;">
+<img id="logo" src="https://raw.githubusercontent.com/ELEMYPQQW569J366SY3MX4M3TLMONEL/ea_27nn3dt29_rep1_el____eph_ma_cu4hfd8_vew_tru28nh2_caut6/refs/heads/main/assets/images/logo_main%20(1).png" alt="EMA Logo">
+<div id="loadingBarContainer">
+<div id="loadingBar"></div>
+</div>
+<script>
+setTimeout(function(){
+const emaId=localStorage.getItem('emaid');
+if(emaId&&emaId.trim()!==""){window.location.href='home.html'}else{window.location.href='login.html'}
+},3000);
+</script>
 </body>
 </html>
