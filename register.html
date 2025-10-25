@@ -340,7 +340,7 @@
         }
 
         .card {
-            background: linear-gradient(135deg, #2e7d32 0%, #43a047 25%, #66bb6a 50%, #81c784 75%, #a5d6a7 100%);
+            background: linear-gradient(135deg, #2e7d32, #66bb6a);
             border-radius: 20px;
             padding: 0;
             color: white;
@@ -359,7 +359,7 @@
             right: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 60%);
             animation: shimmer 3s infinite;
         }
 
@@ -493,7 +493,7 @@
         }
 
         .download-button {
-            background: linear-gradient(135deg, var(--md-sys-color-primary), #66bb6a);
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
             color: var(--md-sys-color-on-primary);
             border: none;
             border-radius: 30px;
@@ -801,8 +801,7 @@
                         const canvas = document.createElement('canvas');
                         const ctx = canvas.getContext('2d');
                         
-                        // More aggressive compression
-                        const maxSize = 400; // Reduced from 800
+                        const maxSize = 400;
                         let width = img.width;
                         let height = img.height;
                         
@@ -821,15 +820,12 @@
                         canvas.width = width;
                         canvas.height = height;
                         
-                        // Apply blur for better compression
                         ctx.filter = 'blur(0.5px)';
                         ctx.drawImage(img, 0, 0, width, height);
                         
-                        // Start with very low quality for maximum compression
-                        let quality = 0.3; // Reduced from 0.8
+                        let quality = 0.3;
                         let dataUrl = canvas.toDataURL('image/jpeg', quality);
                         
-                        // Target much smaller file size (50KB instead of 100KB)
                         while (dataUrl.length > 50000 && quality > 0.05) {
                             quality -= 0.05;
                             dataUrl = canvas.toDataURL('image/jpeg', quality);
@@ -975,13 +971,15 @@
             downloadButton.innerHTML = '<span class="material-icons">hourglass_empty</span> Generating...';
 
             setTimeout(() => {
+                console.log("Attempting to generate canvas with html2canvas...");
                 html2canvas(cardElement, {
                     scale: 2,
                     useCORS: true,
-                    logging: false,
+                    logging: true,
                     width: 533,
                     height: 300,
-                    backgroundColor: null
+                    backgroundColor: null,
+                    allowTaint: true
                 }).then(canvas => {
                     const link = document.createElement('a');
                     link.download = `EMA_Card_${emaId}.png`;
