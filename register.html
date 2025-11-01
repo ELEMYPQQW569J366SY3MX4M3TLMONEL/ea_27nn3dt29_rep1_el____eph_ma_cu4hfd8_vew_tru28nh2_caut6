@@ -2,267 +2,151 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Register for EMA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMA Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         :root {
-            --md-sys-color-primary: #4caf50;
-            --md-sys-color-on-primary: #ffffff;
-            --md-sys-color-primary-container: #e8f5e9;
-            --md-sys-color-on-primary-container: #1b5e20;
-            --md-sys-color-secondary: #81c784;
-            --md-sys-color-on-secondary: #1b5e20;
-            --md-sys-color-secondary-container: #c8e6c9;
-            --md-sys-color-on-secondary-container: #2e7d32;
-            --md-sys-color-tertiary: #a5d6a7;
-            --md-sys-color-on-tertiary: #1b5e20;
-            --md-sys-color-background: #f9f9f9;
-            --md-sys-color-on-background: #1c1c1c;
-            --md-sys-color-surface: #ffffff;
-            --md-sys-color-on-surface: #1c1c1c;
-            --md-sys-color-surface-variant: #e0e0e0;
+            --md-sys-color-primary: #4CAF50;
+            --md-sys-color-on-primary: #FFFFFF;
+            --md-sys-color-primary-container: #E8F5E9;
+            --md-sys-color-on-primary-container: #1B5E20;
+            --md-sys-color-secondary: #81C784;
+            --md-sys-color-on-secondary: #FFFFFF;
+            --md-sys-color-secondary-container: #C8E6C9;
+            --md-sys-color-on-secondary-container: #2E7D32;
+            --md-sys-color-tertiary: #A5D6A7;
+            --md-sys-color-on-tertiary: #1B5E20;
+            --md-sys-color-background: #FAFAFA;
+            --md-sys-color-on-background: #212121;
+            --md-sys-color-surface: #FFFFFF;
+            --md-sys-color-on-surface: #212121;
+            --md-sys-color-surface-variant: #F5F5F5;
             --md-sys-color-on-surface-variant: #424242;
-            --md-sys-color-outline: #757575;
-            --md-sys-color-outline-variant: #bdbdbd;
+            --md-sys-color-outline: #BDBDBD;
+            --md-sys-color-outline-variant: #E0E0E0;
             --md-sys-color-shadow: #000000;
             --md-sys-color-scrim: #000000;
             --md-sys-color-inverse-surface: #303030;
-            --md-sys-color-inverse-on-surface: #f5f5f5;
-            --md-sys-color-inverse-primary: #66bb6a;
-            --md-sys-color-surface-dim: #dddddd;
-            --md-sys-color-surface-bright: #ffffff;
-            --md-sys-color-surface-container-lowest: #ffffff;
-            --md-sys-color-surface-container-low: #f5f5f5;
-            --md-sys-color-surface-container: #efefef;
-            --md-sys-color-surface-container-high: #e9e9e9;
-            --md-sys-color-surface-container-highest: #e3e3e3;
-            --md-sys-elevation-level1: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-            --md-sys-elevation-level2: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
-            --md-sys-elevation-level3: 0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
-            --md-sys-elevation-level4: 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 6px 10px 4px rgba(0, 0, 0, 0.15);
-            --md-sys-elevation-level5: 0px 4px 4px 0px rgba(0, 0, 0, 0.3), 0px 8px 12px 6px rgba(0, 0, 0, 0.15);
-            --md-sys-shape-corner-none: 0px;
-            --md-sys-shape-corner-extra-small: 4px;
-            --md-sys-shape-corner-small: 8px;
-            --md-sys-shape-corner-medium: 12px;
-            --md-sys-shape-corner-large: 16px;
-            --md-sys-shape-corner-extra-large: 28px;
-            --md-sys-typescale-headline-large-font-family: "Inter";
-            --md-sys-typescale-headline-large-font-weight: 400;
-            --md-sys-typescale-headline-large-font-size: 32px;
-            --md-sys-typescale-headline-large-line-height: 40px;
-            --md-sys-typescale-headline-large-letter-spacing: 0px;
-            --md-sys-typescale-headline-medium-font-family: "Inter";
-            --md-sys-typescale-headline-medium-font-weight: 400;
-            --md-sys-typescale-headline-medium-font-size: 28px;
-            --md-sys-typescale-headline-medium-line-height: 36px;
-            --md-sys-typescale-headline-medium-letter-spacing: 0px;
-            --md-sys-typescale-headline-small-font-family: "Inter";
-            --md-sys-typescale-headline-small-font-weight: 400;
-            --md-sys-typescale-headline-small-font-size: 24px;
-            --md-sys-typescale-headline-small-line-height: 32px;
-            --md-sys-typescale-headline-small-letter-spacing: 0px;
-            --md-sys-typescale-title-large-font-family: "Inter";
-            --md-sys-typescale-title-large-font-weight: 500;
-            --md-sys-typescale-title-large-font-size: 22px;
-            --md-sys-typescale-title-large-line-height: 28px;
-            --md-sys-typescale-title-large-letter-spacing: 0px;
-            --md-sys-typescale-title-medium-font-family: "Inter";
-            --md-sys-typescale-title-medium-font-weight: 500;
-            --md-sys-typescale-title-medium-font-size: 16px;
-            --md-sys-typescale-title-medium-line-height: 24px;
-            --md-sys-typescale-title-medium-letter-spacing: 0.1px;
-            --md-sys-typescale-title-small-font-family: "Inter";
-            --md-sys-typescale-title-small-font-weight: 500;
-            --md-sys-typescale-title-small-font-size: 14px;
-            --md-sys-typescale-title-small-line-height: 20px;
-            --md-sys-typescale-title-small-letter-spacing: 0.1px;
-            --md-sys-typescale-body-large-font-family: "Inter";
-            --md-sys-typescale-body-large-font-weight: 400;
-            --md-sys-typescale-body-large-font-size: 16px;
-            --md-sys-typescale-body-large-line-height: 24px;
-            --md-sys-typescale-body-large-letter-spacing: 0.5px;
-            --md-sys-typescale-body-medium-font-family: "Inter";
-            --md-sys-typescale-body-medium-font-weight: 400;
-            --md-sys-typescale-body-medium-font-size: 14px;
-            --md-sys-typescale-body-medium-line-height: 20px;
-            --md-sys-typescale-body-medium-letter-spacing: 0.25px;
-            --md-sys-typescale-body-small-font-family: "Inter";
-            --md-sys-typescale-body-small-font-weight: 400;
-            --md-sys-typescale-body-small-font-size: 12px;
-            --md-sys-typescale-body-small-line-height: 16px;
-            --md-sys-typescale-body-small-letter-spacing: 0.4px;
-            --md-sys-typescale-label-large-font-family: "Inter";
-            --md-sys-typescale-label-large-font-weight: 500;
-            --md-sys-typescale-label-large-font-size: 14px;
-            --md-sys-typescale-label-large-line-height: 20px;
-            --md-sys-typescale-label-large-letter-spacing: 0.1px;
-            --md-sys-typescale-label-medium-font-family: "Inter";
-            --md-sys-typescale-label-medium-font-weight: 500;
-            --md-sys-typescale-label-medium-font-size: 12px;
-            --md-sys-typescale-label-medium-line-height: 16px;
-            --md-sys-typescale-label-medium-letter-spacing: 0.5px;
-            --md-sys-typescale-label-small-font-family: "Inter";
-            --md-sys-typescale-label-small-font-weight: 500;
-            --md-sys-typescale-label-small-font-size: 11px;
-            --md-sys-typescale-label-small-line-height: 16px;
-            --md-sys-typescale-label-small-letter-spacing: 0.5px;
+            --md-sys-color-inverse-on-surface: #F5F5F5;
+            --md-sys-color-inverse-primary: #66BB6A;
+            --md-sys-color-surface-dim: #DDDDDD;
+            --md-sys-color-surface-bright: #FFFFFF;
+            --md-sys-color-surface-container-lowest: #FFFFFF;
+            --md-sys-color-surface-container-low: #F5F5F5;
+            --md-sys-color-surface-container: #EEEEEE;
+            --md-sys-color-surface-container-high: #E0E0E0;
+            --md-sys-color-surface-container-highest: #E0E0E0;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        input, select {
-            -webkit-user-select: text;
-            -moz-user-select: text;
-            -ms-user-select: text;
-            user-select: text;
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--md-sys-color-background);
             color: var(--md-sys-color-on-background);
+            line-height: 1.6;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden;
-            position: fixed;
-            touch-action: none;
-            -ms-touch-action: none;
+            min-height: 100vh;
+            padding: 20px;
         }
 
-        .register-container {
-            background-color: var(--md-sys-color-surface);
-            border-radius: var(--md-sys-shape-corner-large);
-            box-shadow: var(--md-sys-elevation-level3);
+        .container {
             width: 100%;
             max-width: 500px;
-            max-height: 100vh;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-y: auto;
-            overflow-x: hidden;
+            background-color: var(--md-sys-color-surface);
+            border-radius: 28px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
         }
 
         .logo-container {
-            margin-bottom: 16px;
             text-align: center;
+            margin-bottom: 24px;
         }
 
         .logo {
-            width: 100px;
+            max-width: 180px;
             height: auto;
-            margin-bottom: 12px;
         }
 
-        .register-title {
-            font-family: var(--md-sys-typescale-headline-medium-font-family);
-            font-weight: var(--md-sys-typescale-headline-medium-font-weight);
-            font-size: 24px;
-            line-height: var(--md-sys-typescale-headline-medium-line-height);
-            letter-spacing: var(--md-sys-typescale-headline-medium-letter-spacing);
+        h1 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 28px;
+            margin-bottom: 24px;
+            text-align: center;
             color: var(--md-sys-color-primary);
-            margin-bottom: 16px;
         }
 
         .form-group {
-            width: 100%;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
         }
 
-        .form-label {
+        label {
             display: block;
-            font-family: var(--md-sys-typescale-label-large-font-family);
-            font-weight: var(--md-sys-typescale-label-large-font-weight);
-            font-size: var(--md-sys-typescale-label-large-font-size);
-            line-height: var(--md-sys-typescale-label-large-line-height);
-            letter-spacing: var(--md-sys-typescale-label-large-letter-spacing);
-            color: var(--md-sys-color-on-surface-variant);
-            margin-bottom: 6px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            margin-bottom: 8px;
+            color: var(--md-sys-color-on-surface);
+            font-size: 16px;
         }
 
-        .form-input {
+        input, select {
             width: 100%;
-            padding: 12px;
+            padding: 16px;
             border: 1px solid var(--md-sys-color-outline);
-            border-radius: var(--md-sys-shape-corner-small);
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 100;
+            font-size: 16px;
             background-color: var(--md-sys-color-surface-variant);
-            color: var(--md-sys-color-on-surface-variant);
-            font-family: var(--md-sys-typescale-body-large-font-family);
-            font-weight: var(--md-sys-typescale-body-large-font-weight);
-            font-size: var(--md-sys-typescale-body-large-font-size);
-            line-height: var(--md-sys-typescale-body-large-line-height);
-            letter-spacing: var(--md-sys-typescale-body-large-letter-spacing);
-            transition: border-color 0.2s;
+            transition: all 0.2s ease;
         }
 
-        .form-input:focus {
+        input:focus, select:focus {
             outline: none;
             border-color: var(--md-sys-color-primary);
-        }
-
-        .form-select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--md-sys-color-outline);
-            border-radius: var(--md-sys-shape-corner-small);
-            background-color: var(--md-sys-color-surface-variant);
-            color: var(--md-sys-color-on-surface-variant);
-            font-family: var(--md-sys-typescale-body-large-font-family);
-            font-weight: var(--md-sys-typescale-body-large-font-weight);
-            font-size: var(--md-sys-typescale-body-large-font-size);
-            line-height: var(--md-sys-typescale-body-large-line-height);
-            letter-spacing: var(--md-sys-typescale-body-large-letter-spacing);
-            cursor: pointer;
-        }
-
-        .form-select:focus {
-            outline: none;
-            border-color: var(--md-sys-color-primary);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
         }
 
         .error-message {
-            color: #d32f2f;
-            font-size: 12px;
+            color: #F44336;
+            font-size: 14px;
             margin-top: 4px;
             display: none;
         }
 
-        .submit-button {
-            width: 100%;
-            padding: 14px;
+        .submit-btn {
             background-color: var(--md-sys-color-primary);
             color: var(--md-sys-color-on-primary);
             border: none;
-            border-radius: var(--md-sys-shape-corner-small);
-            font-family: var(--md-sys-typescale-label-large-font-family);
-            font-weight: var(--md-sys-typescale-label-large-font-weight);
-            font-size: var(--md-sys-typescale-label-large-font-size);
-            line-height: var(--md-sys-typescale-label-large-line-height);
-            letter-spacing: var(--md-sys-typescale-label-large-letter-spacing);
+            border-radius: 20px;
+            padding: 14px 24px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
             cursor: pointer;
-            transition: background-color 0.2s;
-            margin-top: 8px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 24px;
+            width: 100%;
         }
 
-        .submit-button:hover {
-            background-color: var(--md-sys-color-primary-container);
+        .submit-btn:hover {
+            background-color: var(--md-sys-color-inverse-primary);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
 
         .loader-container {
@@ -279,22 +163,20 @@
             display: none;
         }
 
-        .circle-loader {
-            width: 60px;
-            height: 60px;
+        .loader {
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            border: 5px solid rgba(255, 255, 255, 0.3);
+            border: 8px solid rgba(255, 255, 255, 0.3);
             border-top-color: var(--md-sys-color-primary);
             animation: spin 1s linear infinite;
         }
 
         @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+            to { transform: rotate(360deg); }
         }
 
-        .popup-container {
+        .popup {
             position: fixed;
             top: 0;
             left: 0;
@@ -304,84 +186,67 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 1001;
             display: none;
         }
 
-        .popup {
+        .popup-content {
             background-color: var(--md-sys-color-surface);
-            border-radius: var(--md-sys-shape-corner-large);
-            box-shadow: var(--md-sys-elevation-level5);
-            padding: 24px;
-            width: 90%;
+            border-radius: 28px;
+            padding: 32px;
             max-width: 400px;
+            width: 90%;
             text-align: center;
-        }
-
-        .popup-title {
-            font-family: var(--md-sys-typescale-headline-small-font-family);
-            font-weight: var(--md-sys-typescale-headline-small-font-weight);
-            font-size: var(--md-sys-typescale-headline-small-font-size);
-            line-height: var(--md-sys-typescale-headline-small-line-height);
-            letter-spacing: var(--md-sys-typescale-headline-small-letter-spacing);
-            color: var(--md-sys-color-primary);
-            margin-bottom: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
         }
 
         .ema-id {
-            font-family: var(--md-sys-typescale-title-large-font-family);
-            font-weight: var(--md-sys-typescale-title-large-font-weight);
-            font-size: var(--md-sys-typescale-title-large-font-size);
-            line-height: var(--md-sys-typescale-title-large-line-height);
-            letter-spacing: var(--md-sys-typescale-title-large-letter-spacing);
-            color: var(--md-sys-color-on-surface);
-            margin-bottom: 16px;
-            padding: 12px;
-            background-color: var(--md-sys-color-surface-variant);
-            border-radius: var(--md-sys-shape-corner-small);
+            font-size: 24px;
+            font-weight: 400;
+            margin: 20px 0;
+            color: var(--md-sys-color-primary);
         }
 
-        .warning-text {
-            color: #d32f2f;
-            font-size: 14px;
+        .message {
+            margin-bottom: 24px;
+            color: var(--md-sys-color-on-surface);
+        }
+
+        .sinhala-message {
+            color: #F44336;
             margin-bottom: 24px;
         }
 
-        .done-button {
-            padding: 12px 24px;
+        .done-btn {
             background-color: var(--md-sys-color-primary);
             color: var(--md-sys-color-on-primary);
             border: none;
-            border-radius: var(--md-sys-shape-corner-small);
-            font-family: var(--md-sys-typescale-label-large-font-family);
-            font-weight: var(--md-sys-typescale-label-large-font-weight);
-            font-size: var(--md-sys-typescale-label-large-font-size);
-            line-height: var(--md-sys-typescale-label-large-line-height);
-            letter-spacing: var(--md-sys-typescale-label-large-letter-spacing);
+            border-radius: 20px;
+            padding: 12px 24px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: all 0.2s ease;
         }
 
-        .done-button:hover {
-            background-color: var(--md-sys-color-primary-container);
+        .done-btn:hover {
+            background-color: var(--md-sys-color-inverse-primary);
         }
 
         .profile-upload {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
         }
 
         .profile-preview {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             background-color: var(--md-sys-color-surface-variant);
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 8px;
+            margin: 0 auto 16px;
             overflow: hidden;
         }
 
@@ -391,63 +256,74 @@
             object-fit: cover;
         }
 
-        .profile-upload-label {
-            display: flex;
-            align-items: center;
+        .profile-preview .material-icons {
+            font-size: 48px;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-input-wrapper input[type=file] {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .file-input-label {
+            display: block;
+            padding: 12px 16px;
+            background-color: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+            border-radius: 12px;
             cursor: pointer;
-            color: var(--md-sys-color-primary);
-            font-size: 14px;
+            text-align: center;
+            transition: all 0.2s ease;
         }
 
-        .profile-upload-label .material-icons {
-            margin-right: 4px;
-        }
-
-        .profile-upload-input {
-            display: none;
+        .file-input-label:hover {
+            background-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
         }
     </style>
 </head>
 <body>
-    <div class="register-container">
+    <div class="container">
         <div class="logo-container">
             <img src="https://raw.githubusercontent.com/emaapp/ea_27nn3dt29_rep1_el____eph_ma_cu4hfd8_vew_tru28nh2_caut6/refs/heads/main/assets/images/logo_main%20(1).png" alt="EMA Logo" class="logo">
-            <h1 class="register-title">Register for EMA</h1>
         </div>
-
-        <form id="registerForm">
-            <div class="profile-upload">
+        <h1>Register for EMA</h1>
+        <form id="registrationForm">
+            <div class="form-group profile-upload">
                 <div class="profile-preview" id="profilePreview">
                     <span class="material-icons">account_circle</span>
                 </div>
-                <label for="profileImage" class="profile-upload-label">
-                    <span class="material-icons">camera_alt</span>
-                    Upload Profile Picture
-                </label>
-                <input type="file" id="profileImage" class="profile-upload-input" accept="image/*">
+                <div class="file-input-wrapper">
+                    <input type="file" id="profileImage" accept="image/*">
+                    <label for="profileImage" class="file-input-label">Upload Profile Picture</label>
+                </div>
             </div>
-
             <div class="form-group">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" id="name" class="form-input" placeholder="Enter your full name">
-                <div id="nameError" class="error-message">Name must be at least 5 characters</div>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+                <div class="error-message" id="nameError">Name must be at least 5 characters</div>
             </div>
-
             <div class="form-group">
-                <label for="phone" class="form-label">Phone Number</label>
-                <input type="tel" id="phone" class="form-input" placeholder="0781234567">
-                <div id="phoneError" class="error-message">Please enter a valid Sri Lankan mobile number</div>
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="0781234567" required>
+                <div class="error-message" id="phoneError">Please enter a valid Sri Lankan mobile number</div>
             </div>
-
             <div class="form-group">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" class="form-input" placeholder="example@gmail.com">
-                <div id="emailError" class="error-message">Please enter a valid email address</div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error-message" id="emailError">Please enter a valid email address</div>
             </div>
-
             <div class="form-group">
-                <label for="province" class="form-label">Province</label>
-                <select id="province" class="form-select">
+                <label for="province">Province</label>
+                <select id="province" name="province" required>
                     <option value="">Select Province</option>
                     <option value="western">Western Province</option>
                     <option value="central">Central Province</option>
@@ -459,37 +335,36 @@
                     <option value="uva">Uva Province</option>
                     <option value="sabaragamuwa">Sabaragamuwa Province</option>
                 </select>
-                <div id="provinceError" class="error-message">Please select a province</div>
+                <div class="error-message" id="provinceError">Please select a province</div>
             </div>
-
             <div class="form-group">
-                <label for="district" class="form-label">District</label>
-                <select id="district" class="form-select" disabled>
+                <label for="district">District</label>
+                <select id="district" name="district" required disabled>
                     <option value="">Select District</option>
                 </select>
-                <div id="districtError" class="error-message">Please select a district</div>
+                <div class="error-message" id="districtError">Please select a district</div>
             </div>
-
-            <button type="submit" class="submit-button">Submit</button>
+            <button type="submit" class="submit-btn">Submit</button>
         </form>
     </div>
 
-    <div class="loader-container" id="loaderContainer">
-        <div class="circle-loader"></div>
+    <div class="loader-container" id="loader">
+        <div class="loader"></div>
     </div>
 
-    <div class="popup-container" id="popupContainer">
-        <div class="popup">
-            <h2 class="popup-title">Registration Successful!</h2>
+    <div class="popup" id="successPopup">
+        <div class="popup-content">
+            <h2>Registration Successful!</h2>
             <div class="ema-id" id="emaId"></div>
-            <p class="warning-text">Remember this EMA number, you will need it in the future.</p>
-            <p class="warning-text">මෙම EMA අංකය මතක තබා ගන්න, අනාගතයේදී ඔබට එය අවශ්‍ය වනු ඇත.</p>
-            <button class="done-button" id="doneButton">Done</button>
+            <p class="message">Remember this EMA number, you will need it in the future.</p>
+            <p class="sinhala-message">මෙම EMA අංකය මතක තබා ගන්න, අනාගතයේදී ඔබට එය අවශ්‍ය වනු ඇත.</p>
+            <button class="done-btn" id="doneBtn">Done</button>
         </div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyA3XHW3KeSi3ykNXJMwZAt5kSdcExxkDGs",
@@ -503,12 +378,13 @@
         };
 
         firebase.initializeApp(firebaseConfig);
-        console.log("Firebase initialized");
+        console.log("Firebase initialized successfully");
 
         const database = firebase.database();
+        const storage = firebase.storage();
         console.log("Firebase services initialized");
 
-        const provinceDistricts = {
+        const districts = {
             western: ["Colombo", "Gampaha", "Kalutara"],
             central: ["Kandy", "Matale", "Nuwara Eliya"],
             southern: ["Galle", "Matara", "Hambantota"],
@@ -522,21 +398,14 @@
 
         const provinceSelect = document.getElementById('province');
         const districtSelect = document.getElementById('district');
-        const registerForm = document.getElementById('registerForm');
-        const loaderContainer = document.getElementById('loaderContainer');
-        const popupContainer = document.getElementById('popupContainer');
-        const emaIdElement = document.getElementById('emaId');
-        const doneButton = document.getElementById('doneButton');
-        const profileImageInput = document.getElementById('profileImage');
-        const profilePreview = document.getElementById('profilePreview');
 
         provinceSelect.addEventListener('change', function() {
             const selectedProvince = this.value;
             districtSelect.innerHTML = '<option value="">Select District</option>';
             
-            if (selectedProvince && provinceDistricts[selectedProvince]) {
+            if (selectedProvince && districts[selectedProvince]) {
                 districtSelect.disabled = false;
-                provinceDistricts[selectedProvince].forEach(district => {
+                districts[selectedProvince].forEach(district => {
                     const option = document.createElement('option');
                     option.value = district.toLowerCase().replace(/\s+/g, '-');
                     option.textContent = district;
@@ -547,175 +416,246 @@
             }
         });
 
+        const profileImageInput = document.getElementById('profileImage');
+        const profilePreview = document.getElementById('profilePreview');
+
         profileImageInput.addEventListener('change', function() {
             const file = this.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    profilePreview.innerHTML = `<img src="${e.target.result}" alt="Profile">`;
+                    profilePreview.innerHTML = `<img src="${e.target.result}" alt="Profile Preview">`;
                 };
                 reader.readAsDataURL(file);
+            }
+        });
+
+        const form = document.getElementById('registrationForm');
+        const loader = document.getElementById('loader');
+        const successPopup = document.getElementById('successPopup');
+        const emaIdElement = document.getElementById('emaId');
+        const doneBtn = document.getElementById('doneBtn');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (validateForm()) {
+                loader.style.display = 'flex';
+                
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const email = document.getElementById('email').value;
+                const province = document.getElementById('province').value;
+                const district = document.getElementById('district').value;
+                const profileImage = document.getElementById('profileImage').files[0];
+                
+                generateEmaId().then(emaId => {
+                    console.log("Generated EMA ID:", emaId);
+                    
+                    if (profileImage) {
+                        compressImage(profileImage, 100).then(compressedImage => {
+                            console.log("Original image size:", (profileImage.size / 1024).toFixed(2) + " KB");
+                            console.log("Compressed image size:", (compressedImage.size / 1024).toFixed(2) + " KB");
+                            
+                            uploadImage(compressedImage, emaId).then(imageUrl => {
+                                saveUserData(emaId, name, phone, email, province, district, imageUrl);
+                            }).catch(error => {
+                                console.error("Error uploading image:", error);
+                                saveUserData(emaId, name, phone, email, province, district, null);
+                            });
+                        }).catch(error => {
+                            console.error("Error compressing image:", error);
+                            saveUserData(emaId, name, phone, email, province, district, null);
+                        });
+                    } else {
+                        saveUserData(emaId, name, phone, email, province, district, null);
+                    }
+                }).catch(error => {
+                    console.error("Error generating EMA ID:", error);
+                    loader.style.display = 'none';
+                    alert("Registration failed. Please try again.");
+                });
             }
         });
 
         function validateForm() {
             let isValid = true;
             
-            const name = document.getElementById('name').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const province = document.getElementById('province').value;
-            const district = document.getElementById('district').value;
-            
+            const name = document.getElementById('name').value;
+            const nameError = document.getElementById('nameError');
             if (name.length < 5) {
-                document.getElementById('nameError').style.display = 'block';
+                nameError.style.display = 'block';
                 isValid = false;
             } else {
-                document.getElementById('nameError').style.display = 'none';
+                nameError.style.display = 'none';
             }
             
+            const phone = document.getElementById('phone').value;
+            const phoneError = document.getElementById('phoneError');
             const phoneRegex = /^07[0-9]{8}$/;
             if (!phoneRegex.test(phone)) {
-                document.getElementById('phoneError').style.display = 'block';
+                phoneError.style.display = 'block';
                 isValid = false;
             } else {
-                document.getElementById('phoneError').style.display = 'none';
+                phoneError.style.display = 'none';
             }
             
-            const validEmailDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com', 'aol.com', 'mail.com', 'zoho.com', 'yandex.com', 'protonmail.com'];
+            const email = document.getElementById('email').value;
+            const emailError = document.getElementById('emailError');
+            const validDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com', 'aol.com', 'mail.com', 'zoho.com', 'yandex.com', 'protonmail.com'];
             const emailDomain = email.split('@')[1];
-            if (!email || !validEmailDomains.includes(emailDomain)) {
-                document.getElementById('emailError').style.display = 'block';
+            if (!email.includes('@') || !validDomains.includes(emailDomain)) {
+                emailError.style.display = 'block';
                 isValid = false;
             } else {
-                document.getElementById('emailError').style.display = 'none';
+                emailError.style.display = 'none';
             }
             
+            const province = document.getElementById('province').value;
+            const provinceError = document.getElementById('provinceError');
             if (!province) {
-                document.getElementById('provinceError').style.display = 'block';
+                provinceError.style.display = 'block';
                 isValid = false;
             } else {
-                document.getElementById('provinceError').style.display = 'none';
+                provinceError.style.display = 'none';
             }
             
+            const district = document.getElementById('district').value;
+            const districtError = document.getElementById('districtError');
             if (!district) {
-                document.getElementById('districtError').style.display = 'block';
+                districtError.style.display = 'block';
                 isValid = false;
             } else {
-                document.getElementById('districtError').style.display = 'none';
+                districtError.style.display = 'none';
             }
             
             return isValid;
         }
 
         function generateEmaId() {
-            const randomNum = Math.floor(100000 + Math.random() * 900000);
-            return `${randomNum}-E`;
-        }
-
-        function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.7) {
-            return new Promise((resolve) => {
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-                const img = new Image();
-                
-                img.onload = function() {
-                    console.log(`Original image size: ${file.size} bytes`);
-                    
-                    let width = img.width;
-                    let height = img.height;
-                    
-                    if (width > height) {
-                        if (width > maxWidth) {
-                            height *= maxWidth / width;
-                            width = maxWidth;
-                        }
-                    } else {
-                        if (height > maxHeight) {
-                            width *= maxHeight / height;
-                            height = maxHeight;
-                        }
-                    }
-                    
-                    canvas.width = width;
-                    canvas.height = height;
-                    
-                    ctx.drawImage(img, 0, 0, width, height);
-                    
-                    canvas.toBlob(function(blob) {
-                        console.log(`Compressed image size: ${blob.size} bytes`);
-                        
-                        const reader = new FileReader();
-                        reader.onloadend = function() {
-                            resolve(reader.result);
-                        };
-                        reader.readAsDataURL(blob);
-                    }, 'image/jpeg', quality);
-                };
-                
-                img.src = URL.createObjectURL(file);
+            return new Promise((resolve, reject) => {
+                const randomNum = Math.floor(100000 + Math.random() * 900000);
+                const emaId = `${randomNum}-E`;
+                resolve(emaId);
             });
         }
 
-        registerForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            if (!validateForm()) {
-                return;
-            }
-            
-            loaderContainer.style.display = 'flex';
-            
-            const name = document.getElementById('name').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const province = document.getElementById('province').value;
-            const district = document.getElementById('district').value;
-            const profileImageFile = profileImageInput.files[0];
-            
-            const emaId = generateEmaId();
-            console.log(`Generated EMA ID: ${emaId}`);
-            
-            try {
-                let profileImageDataUrl = '';
-                
-                if (profileImageFile) {
-                    console.log("Compressing profile image...");
-                    profileImageDataUrl = await compressImage(profileImageFile);
-                    console.log("Profile image compressed and converted to data URL");
-                }
-                
-                const userData = {
-                    name,
-                    phone,
-                    email,
-                    province,
-                    district,
-                    profileImageDataUrl,
-                    emaId,
-                    registeredAt: firebase.database.ServerValue.TIMESTAMP
+        function compressImage(file, maxSizeKB) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function(event) {
+                    const img = new Image();
+                    img.src = event.target.result;
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        
+                        let width = img.width;
+                        let height = img.height;
+                        
+                        const maxSize = 800;
+                        if (width > height) {
+                            if (width > maxSize) {
+                                height *= maxSize / width;
+                                width = maxSize;
+                            }
+                        } else {
+                            if (height > maxSize) {
+                                width *= maxSize / height;
+                                height = maxSize;
+                            }
+                        }
+                        
+                        canvas.width = width;
+                        canvas.height = height;
+                        
+                        ctx.drawImage(img, 0, 0, width, height);
+                        
+                        let quality = 0.9;
+                        let dataUrl = canvas.toDataURL('image/jpeg', quality);
+                        
+                        while (dataUrl.length > maxSizeKB * 1024 && quality > 0.1) {
+                            quality -= 0.1;
+                            dataUrl = canvas.toDataURL('image/jpeg', quality);
+                        }
+                        
+                        const byteString = atob(dataUrl.split(',')[1]);
+                        const mimeString = dataUrl.split(',')[0].split(':')[1].split(';')[0];
+                        const ab = new ArrayBuffer(byteString.length);
+                        const ia = new Uint8Array(ab);
+                        
+                        for (let i = 0; i < byteString.length; i++) {
+                            ia[i] = byteString.charCodeAt(i);
+                        }
+                        
+                        const blob = new Blob([ab], {type: mimeString});
+                        const compressedFile = new File([blob], file.name, {type: 'image/jpeg'});
+                        
+                        resolve(compressedFile);
+                    };
                 };
-                
-                console.log("Saving user data to Firebase Database...");
-                await database.ref(`users/${emaId}`).set(userData);
-                console.log("User data saved successfully");
-                
-                loaderContainer.style.display = 'none';
-                emaIdElement.textContent = `Your EMA ID is: ${emaId}`;
-                popupContainer.style.display = 'flex';
-            } catch (error) {
-                console.error("Error during registration:", error);
-                loaderContainer.style.display = 'none';
-                alert("Registration failed. Please try again.");
-            }
-        });
+            });
+        }
 
-        doneButton.addEventListener('click', function() {
-            const emaId = emaIdElement.textContent.replace('Your EMA ID is: ', '');
+        function uploadImage(file, emaId) {
+            return new Promise((resolve, reject) => {
+                const storageRef = storage.ref(`profile_images/${emaId}`);
+                const uploadTask = storageRef.put(file);
+                
+                uploadTask.on('state_changed', 
+                    (snapshot) => {
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                    }, 
+                    (error) => {
+                        console.error("Error uploading image:", error);
+                        reject(error);
+                    }, 
+                    () => {
+                        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                            console.log('File available at', downloadURL);
+                            resolve(downloadURL);
+                        });
+                    }
+                );
+            });
+        }
+
+        function saveUserData(emaId, name, phone, email, province, district, imageUrl) {
+            const userData = {
+                emaId: emaId,
+                name: name,
+                phone: phone,
+                email: email,
+                province: province,
+                district: district,
+                profileImage: imageUrl,
+                registrationDate: new Date().toISOString()
+            };
+            
+            console.log("Saving user data:", userData);
+            
+            database.ref('users/' + emaId).set(userData)
+                .then(() => {
+                    console.log("User data saved successfully");
+                    loader.style.display = 'none';
+                    emaIdElement.textContent = emaId;
+                    successPopup.style.display = 'flex';
+                })
+                .catch((error) => {
+                    console.error("Error saving user data:", error);
+                    loader.style.display = 'none';
+                    alert("Registration failed. Please try again.");
+                });
+        }
+
+        doneBtn.addEventListener('click', function() {
+            const emaId = emaIdElement.textContent;
             
             navigator.clipboard.writeText(emaId)
                 .then(() => {
-                    console.log(`EMA ID ${emaId} copied to clipboard`);
+                    console.log("EMA ID copied to clipboard:", emaId);
                     window.location.href = 'login.html';
                 })
                 .catch(err => {
@@ -723,46 +663,6 @@
                     window.location.href = 'login.html';
                 });
         });
-
-        document.addEventListener('contextmenu', event => event.preventDefault());
-        document.addEventListener('selectstart', event => event.preventDefault());
-        document.addEventListener('dragstart', event => event.preventDefault());
-        
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'F12' || 
-                (e.ctrlKey && e.shiftKey && e.key === 'I') || 
-                (e.ctrlKey && e.shiftKey && e.key === 'C') || 
-                (e.ctrlKey && e.key === 'u')) {
-                e.preventDefault();
-            }
-        });
-        
-        document.addEventListener('gesturestart', function(e) {
-            e.preventDefault();
-        });
-        
-        document.addEventListener('gesturechange', function(e) {
-            e.preventDefault();
-        });
-        
-        document.addEventListener('gestureend', function(e) {
-            e.preventDefault();
-        });
-        
-        document.addEventListener('touchstart', function(e) {
-            if (e.touches.length > 1) {
-                e.preventDefault();
-            }
-        });
-        
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function(e) {
-            const now = Date.now();
-            if (now - lastTouchEnd <= 300) {
-                e.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
     </script>
 </body>
 </html>
