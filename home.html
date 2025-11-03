@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMA Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --md-sys-color-primary: #4CAF50;
+            --md-sys-color-on-primary: #FFFFFF;
+            --md-sys-color-primary-container: #E8F5E9;
+            --md-sys-color-on-primary-container: #1B5E20;
+            --md-sys-color-secondary: #81C784;
+            --md-sys-color-on-secondary: #FFFFFF;
+            --md-sys-color-secondary-container: #C8E6C9;
+            --md-sys-color-on-secondary-container: #2E7D32;
+            --md-sys-color-tertiary: #A5D6A7;
+            --md-sys-color-on-tertiary: #1B5E20;
+            --md-sys-color-background: #FAFAFA;
+            --md-sys-color-on-background: #212121;
+            --md-sys-color-surface: #FFFFFF;
+            --md-sys-color-on-surface: #212121;
+            --md-sys-color-surface-variant: #F5F5F5;
+            --md-sys-color-on-surface-variant: #424242;
+            --md-sys-color-outline: #BDBDBD;
+            --md-sys-color-outline-variant: #E0E0E0;
+            --md-sys-color-shadow: #000000;
+            --md-sys-color-scrim: #000000;
+            --md-sys-color-inverse-surface: #303030;
+            --md-sys-color-inverse-on-surface: #F5F5F5;
+            --md-sys-color-inverse-primary: #66BB6A;
+            --md-sys-color-surface-dim: #DDDDDD;
+            --md-sys-color-surface-bright: #FFFFFF;
+            --md-sys-color-surface-container-lowest: #FFFFFF;
+            --md-sys-color-surface-container-low: #F5F5F5;
+            --md-sys-color-surface-container: #EEEEEE;
+            --md-sys-color-surface-container-high: #E0E0E0;
+            --md-sys-color-surface-container-highest: #E0E0E0;
+            --md-sys-color-error: #F44336;
+            --md-sys-color-on-error: #FFFFFF;
+            --md-sys-color-success: #4CAF50;
+            --md-sys-color-on-success: #FFFFFF;
+            --md-sys-color-warning: #FF9800;
+            --md-sys-color-on-warning: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--md-sys-color-background);
+            color: var(--md-sys-color-on-background);
+            line-height: 1.6;
+            padding-bottom: 20px;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: var(--md-sys-color-surface);
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .user-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--md-sys-color-primary-container);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 16px;
+            overflow: hidden;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .user-avatar .material-icons {
+            font-size: 32px;
+            color: var(--md-sys-color-primary);
+        }
+
+        .user-details h2 {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .user-details p {
+            font-size: 16px;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        .edit-btn {
+            background-color: transparent;
+            border: none;
+            color: var(--md-sys-color-primary);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+
+        .edit-btn:hover {
+            background-color: var(--md-sys-color-primary-container);
+        }
+
+        .agent-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .agent-status {
+            display: flex;
+            align-items: center;
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-right: 8px;
+        }
+
+        .status-not-agent {
+            background-color: var(--md-sys-color-surface-variant);
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        .status-pending {
+            background-color: var(--md-sys-color-warning);
+            color: var(--md-sys-color-on-warning);
+        }
+
+        .status-agent {
+            background-color: var(--md-sys-color-success);
+            color: var(--md-sys-color-on-success);
+        }
+
+        .status-declined {
+            background-color: var(--md-sys-color-error);
+            color: var(--md-sys-color-on-error);
+        }
+
+        .agent-btn {
+            background-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .agent-btn:hover {
+            background-color: var(--md-sys-color-inverse-primary);
+        }
+
+        .agent-btn .material-icons {
+            font-size: 18px;
+            margin-right: 4px;
+        }
+
+        .nav-card {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            min-width: calc(50% - 5px);
+            background-color: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+        }
+
+        .nav-btn .material-icons {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .big-nav-card {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .big-nav-btn {
+            flex: 1;
+            min-width: calc(50% - 5px);
+            background-color: var(--md-sys-color-surface-variant);
+            color: var(--md-sys-color-on-surface-variant);
+            border: none;
+            border-radius: 12px;
+            padding: 24px 16px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .big-nav-btn:hover {
+            background-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+        }
+
+        .big-nav-btn .material-icons {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--md-sys-color-on-surface-variant);
+            font-size: 14px;
+        }
+
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loader {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 8px solid rgba(255, 255, 255, 0.3);
+            border-top-color: var(--md-sys-color-primary);
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        .loader-message {
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+            display: none;
+        }
+
+        .popup-content {
+            background-color: var(--md-sys-color-surface);
+            border-radius: 28px;
+            padding: 32px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .popup-title {
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: var(--md-sys-color-on-surface);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            margin-bottom: 8px;
+            color: var(--md-sys-color-on-surface);
+            font-size: 16px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid var(--md-sys-color-outline);
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 100;
+            font-size: 16px;
+            background-color: var(--md-sys-color-surface-variant);
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--md-sys-color-primary);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-input-wrapper input[type=file] {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .file-input-label {
+            display: block;
+            padding: 12px 16px;
+            background-color: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .file-input-label:hover {
+            background-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+        }
+
+        .nic-preview {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            margin-top: 10px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 24px;
+            gap: 10px;
+        }
+
+        .submit-btn, .cancel-btn, .revoke-btn {
+            background-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            border: none;
+            border-radius: 20px;
+            padding: 12px 24px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .submit-btn:hover, .cancel-btn:hover, .revoke-btn:hover {
+            background-color: var(--md-sys-color-inverse-primary);
+        }
+
+        .cancel-btn {
+            background-color: transparent;
+            color: var(--md-sys-color-primary);
+            border: 1px solid var(--md-sys-color-primary);
+        }
+
+        .cancel-btn:hover {
+            background-color: var(--md-sys-color-primary-container);
+        }
+
+        .revoke-btn {
+            background-color: var(--md-sys-color-error);
+            color: var(--md-sys-color-on-error);
+        }
+
+        .revoke-btn:hover {
+            background-color: #D32F2F;
+        }
+
+        .camera-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .camera-btn, .gallery-btn {
+            flex: 1;
+            background-color: var(--md-sys-color-secondary-container);
+            color: var(--md-sys-color-on-secondary-container);
+            border: none;
+            border-radius: 12px;
+            padding: 12px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .camera-btn:hover, .gallery-btn:hover {
+            background-color: var(--md-sys-color-secondary);
+        }
+
+        .camera-btn .material-icons, .gallery-btn .material-icons {
+            font-size: 18px;
+            margin-right: 4px;
+        }
+
+        .agent-id {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--md-sys-color-primary);
+            margin-top: 8px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader-container" id="loader">
+        <div class="loader"></div>
+        <p class="loader-message">Loading your data...</p>
+    </div>
+
+    <div class="container">
+        <div class="card user-card">
+            <div class="user-info">
+                <div class="user-avatar" id="userAvatar">
+                    <span class="material-icons">account_circle</span>
+                </div>
+                <div class="user-details">
+                    <h2 id="userName">Hello, User</h2>
+                    <p id="greeting">Good morning</p>
+                </div>
+            </div>
+            <button class="edit-btn" id="editProfileBtn">
+                <span class="material-icons">edit</span>
+            </button>
+        </div>
+
+        <div class="card agent-card">
+            <div class="agent-status">
+                <span class="status-badge status-not-agent" id="agentStatusBadge">Not an Agent</span>
+                <span class="agent-id hidden" id="agentId"></span>
+            </div>
+            <button class="agent-btn" id="agentBtn">
+                <span class="material-icons">verified_user</span>
+                <span>Apply to be Agent</span>
+            </button>
+        </div>
+
+        <div class="card nav-card">
+            <button class="nav-btn" id="chatBtn">
+                <span class="material-icons">chat</span>
+                <span>Chat</span>
+            </button>
+            <button class="nav-btn" id="cropsBtn">
+                <span class="material-icons">grass</span>
+                <span>Crops</span>
+            </button>
+            <button class="nav-btn" id="forumBtn">
+                <span class="material-icons">forum</span>
+                <span>Forum</span>
+            </button>
+            <button class="nav-btn" id="statusBtn">
+                <span class="material-icons">notifications</span>
+                <span>Status</span>
+            </button>
+        </div>
+
+        <div class="card big-nav-card">
+            <button class="big-nav-btn" id="reportBtn">
+                <span class="material-icons">assignment</span>
+                <span>Report</span>
+            </button>
+            <button class="big-nav-btn" id="alertBtn">
+                <span class="material-icons">warning</span>
+                <span>Alert</span>
+            </button>
+            <button class="big-nav-btn" id="mapBtn">
+                <span class="material-icons">map</span>
+                <span>Map</span>
+            </button>
+            <button class="big-nav-btn" id="analyticsBtn">
+                <span class="material-icons">analytics</span>
+                <span>Analytics</span>
+            </button>
+        </div>
+
+        <div class="footer">
+            <p>EMA by Aveesha Ninsara</p>
+        </div>
+    </div>
+
+    <!-- Edit Profile Popup -->
+    <div class="popup" id="editProfilePopup">
+        <div class="popup-content">
+            <h2 class="popup-title">Edit Profile</h2>
+            <form id="editProfileForm">
+                <div class="form-group">
+                    <label for="editName">Name</label>
+                    <input type="text" id="editName" required>
+                </div>
+                <div class="form-group">
+                    <label for="editPhone">Phone Number</label>
+                    <input type="tel" id="editPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="editEmail">Email</label>
+                    <input type="email" id="editEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="editProvince">Province</label>
+                    <select id="editProvince" required>
+                        <option value="">Select Province</option>
+                        <option value="western">Western Province</option>
+                        <option value="central">Central Province</option>
+                        <option value="southern">Southern Province</option>
+                        <option value="northern">Northern Province</option>
+                        <option value="eastern">Eastern Province</option>
+                        <option value="north-western">North Western Province</option>
+                        <option value="north-central">North Central Province</option>
+                        <option value="uva">Uva Province</option>
+                        <option value="sabaragamuwa">Sabaragamuwa Province</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editDistrict">District</label>
+                    <select id="editDistrict" required disabled>
+                        <option value="">Select District</option>
+                    </select>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="submit-btn">Save Changes</button>
+                    <button type="button" class="cancel-btn" id="cancelEditBtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Agent Application Popup -->
+    <div class="popup" id="agentPopup">
+        <div class="popup-content">
+            <h2 class="popup-title">Agent Application</h2>
+            <form id="agentForm">
+                <div class="form-group">
+                    <label for="agentName">Name</label>
+                    <input type="text" id="agentName" required>
+                </div>
+                <div class="form-group">
+                    <label for="agentPhone">Mobile Number</label>
+                    <input type="tel" id="agentPhone" required readonly>
+                </div>
+                <div class="form-group">
+                    <label>Front NIC Image</label>
+                    <div class="camera-options">
+                        <button type="button" class="camera-btn" id="captureNicBtn">
+                            <span class="material-icons">camera_alt</span>
+                            <span>Capture</span>
+                        </button>
+                        <button type="button" class="gallery-btn" id="selectNicBtn">
+                            <span class="material-icons">photo_library</span>
+                            <span>Gallery</span>
+                        </button>
+                    </div>
+                    <input type="file" id="nicImage" accept="image/*" style="display: none;">
+                    <img id="nicPreview" class="nic-preview" alt="NIC Preview">
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="submit-btn">Submit Application</button>
+                    <button type="button" class="cancel-btn" id="cancelAgentBtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Revoke Application Popup -->
+    <div class="popup" id="revokePopup">
+        <div class="popup-content">
+            <h2 class="popup-title">Revoke Application</h2>
+            <p>Are you sure you want to revoke your agent application? This action cannot be undone.</p>
+            <div class="form-buttons">
+                <button type="button" class="revoke-btn" id="confirmRevokeBtn">Revoke</button>
+                <button type="button" class="cancel-btn" id="cancelRevokeBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyA3XHW3KeSi3ykNXJMwZAt5kSdcExxkDGs",
+            authDomain: "emausers-23173.firebaseapp.com",
+            databaseURL: "https://emausers-23173-default-rtdb.firebaseio.com",
+            projectId: "emausers-23173",
+            storageBucket: "emausers-23173.firebasestorage.app",
+            messagingSenderId: "671834680251",
+            appId: "1:671834680251:web:6b86e89e04df73b77d729e",
+            measurementId: "G-X92FMMD01R"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        console.log("Firebase initialized successfully");
+
+        const database = firebase.database();
+        const storage = firebase.storage();
+        console.log("Firebase services initialized");
+
+        const districts = {
+            western: ["Colombo", "Gampaha", "Kalutara"],
+            central: ["Kandy", "Matale", "Nuwara Eliya"],
+            southern: ["Galle", "Matara", "Hambantota"],
+            northern: ["Jaffna", "Kilinochchi", "Mannar", "Vavuniya", "Mullaitivu"],
+            eastern: ["Batticaloa", "Ampara", "Trincomalee"],
+            "north-western": ["Kurunegala", "Puttalam"],
+            "north-central": ["Anuradhapura", "Polonnaruwa"],
+            uva: ["Badulla", "Monaragala"],
+            sabaragamuwa: ["Ratnapura", "Kegalle"]
+        };
+
+        let userData = {};
+        let emaid = localStorage.getItem('emaid');
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!emaid) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            loadUserData();
+            setupEventListeners();
+            updateGreeting();
+        });
+
+        function loadUserData() {
+            console.log("Loading user data for EMA ID:", emaid);
+            
+            database.ref('users/' + emaid).once('value')
+                .then((snapshot) => {
+                    if (snapshot.exists()) {
+                        userData = snapshot.val();
+                        console.log("User data loaded:", userData);
+                        
+                        localStorage.setItem('district', userData.district);
+                        
+                        updateUI();
+                        checkAgentStatus();
+                    } else {
+                        console.log("No user data found for EMA ID:", emaid);
+                        window.location.href = 'login.html';
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error loading user data:", error);
+                    window.location.href = 'login.html';
+                })
+                .finally(() => {
+                    document.getElementById('loader').style.display = 'none';
+                });
+        }
+
+        function updateUI() {
+            document.getElementById('userName').textContent = `Hello, ${userData.name}`;
+            
+            if (userData.profileImage) {
+                document.getElementById('userAvatar').innerHTML = `<img src="${userData.profileImage}" alt="Profile">`;
+            }
+        }
+
+        function updateGreeting() {
+            const hour = new Date().getHours();
+            let greeting = "Good morning";
+            
+            if (hour >= 12 && hour < 18) {
+                greeting = "Good afternoon";
+            } else if (hour >= 18) {
+                greeting = "Good evening";
+            }
+            
+            document.getElementById('greeting').textContent = greeting;
+        }
+
+        function checkAgentStatus() {
+            database.ref('users/' + emaid + '/agent').once('value')
+                .then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const agentData = snapshot.val();
+                        console.log("Agent data found:", agentData);
+                        
+                        updateAgentUI(agentData);
+                    } else {
+                        console.log("No agent data found");
+                        updateAgentUI(null);
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error checking agent status:", error);
+                });
+        }
+
+        function updateAgentUI(agentData) {
+            const agentStatusBadge = document.getElementById('agentStatusBadge');
+            const agentBtn = document.getElementById('agentBtn');
+            const agentId = document.getElementById('agentId');
+            
+            if (!agentData) {
+                agentStatusBadge.textContent = "Not an Agent";
+                agentStatusBadge.className = "status-badge status-not-agent";
+                agentBtn.innerHTML = `
+                    <span class="material-icons">verified_user</span>
+                    <span>Apply to be Agent</span>
+                `;
+                agentId.classList.add('hidden');
+                agentBtn.onclick = openAgentPopup;
+            } else if (agentData.agentstatus === true) {
+                agentStatusBadge.textContent = "Agent";
+                agentStatusBadge.className = "status-badge status-agent";
+                agentBtn.innerHTML = `
+                    <span class="material-icons">edit</span>
+                    <span>Edit Application</span>
+                `;
+                agentId.textContent = `Agent ID: ${agentData.agentId}`;
+                agentId.classList.remove('hidden');
+                agentBtn.onclick = openAgentPopup;
+            } else if (agentData.agentstatus === false) {
+                agentStatusBadge.textContent = "Declined";
+                agentStatusBadge.className = "status-badge status-declined";
+                agentBtn.innerHTML = `
+                    <span class="material-icons">edit</span>
+                    <span>Edit Application</span>
+                `;
+                agentId.classList.add('hidden');
+                agentBtn.onclick = openAgentPopup;
+            } else {
+                agentStatusBadge.textContent = "Pending Approval";
+                agentStatusBadge.className = "status-badge status-pending";
+                agentBtn.innerHTML = `
+                    <span class="material-icons">cancel</span>
+                    <span>Revoke Application</span>
+                `;
+                agentId.textContent = `Application ID: ${agentData.agentId}`;
+                agentId.classList.remove('hidden');
+                agentBtn.onclick = openRevokePopup;
+            }
+        }
+
+        function setupEventListeners() {
+            document.getElementById('editProfileBtn').addEventListener('click', openEditProfilePopup);
+            document.getElementById('cancelEditBtn').addEventListener('click', closeEditProfilePopup);
+            document.getElementById('editProfileForm').addEventListener('submit', saveProfileChanges);
+            
+            document.getElementById('captureNicBtn').addEventListener('click', captureNIC);
+            document.getElementById('selectNicBtn').addEventListener('click', selectNIC);
+            document.getElementById('nicImage').addEventListener('change', previewNIC);
+            document.getElementById('cancelAgentBtn').addEventListener('click', closeAgentPopup);
+            document.getElementById('agentForm').addEventListener('submit', submitAgentApplication);
+            
+            document.getElementById('confirmRevokeBtn').addEventListener('click', revokeApplication);
+            document.getElementById('cancelRevokeBtn').addEventListener('click', closeRevokePopup);
+            
+            document.getElementById('editProvince').addEventListener('change', updateDistrictOptions);
+            
+            document.getElementById('chatBtn').addEventListener('click', () => window.location.href = 'chat.html');
+            document.getElementById('cropsBtn').addEventListener('click', () => window.location.href = 'crops.html');
+            document.getElementById('forumBtn').addEventListener('click', () => window.location.href = 'forum.html');
+            document.getElementById('statusBtn').addEventListener('click', () => window.location.href = 'status.html');
+            document.getElementById('reportBtn').addEventListener('click', () => window.location.href = 'report.html');
+            document.getElementById('alertBtn').addEventListener('click', () => window.location.href = 'alert.html');
+            document.getElementById('mapBtn').addEventListener('click', () => window.location.href = 'map.html');
+            document.getElementById('analyticsBtn').addEventListener('click', () => window.location.href = 'analytics.html');
+        }
+
+        function openEditProfilePopup() {
+            document.getElementById('editName').value = userData.name;
+            document.getElementById('editPhone').value = userData.phone;
+            document.getElementById('editEmail').value = userData.email;
+            document.getElementById('editProvince').value = userData.province;
+            
+            updateDistrictOptions();
+            document.getElementById('editDistrict').value = userData.district;
+            
+            document.getElementById('editProfilePopup').style.display = 'flex';
+        }
+
+        function closeEditProfilePopup() {
+            document.getElementById('editProfilePopup').style.display = 'none';
+        }
+
+        function saveProfileChanges(e) {
+            e.preventDefault();
+            
+            const updatedData = {
+                name: document.getElementById('editName').value,
+                phone: document.getElementById('editPhone').value,
+                email: document.getElementById('editEmail').value,
+                province: document.getElementById('editProvince').value,
+                district: document.getElementById('editDistrict').value
+            };
+            
+            console.log("Updating user profile:", updatedData);
+            
+            database.ref('users/' + emaid).update(updatedData)
+                .then(() => {
+                    console.log("Profile updated successfully");
+                    userData = { ...userData, ...updatedData };
+                    localStorage.setItem('district', userData.district);
+                    updateUI();
+                    closeEditProfilePopup();
+                })
+                .catch((error) => {
+                    console.error("Error updating profile:", error);
+                });
+        }
+
+        function updateDistrictOptions() {
+            const selectedProvince = document.getElementById('editProvince').value;
+            const districtSelect = document.getElementById('editDistrict');
+            
+            districtSelect.innerHTML = '<option value="">Select District</option>';
+            
+            if (selectedProvince && districts[selectedProvince]) {
+                districtSelect.disabled = false;
+                districts[selectedProvince].forEach(district => {
+                    const option = document.createElement('option');
+                    option.value = district.toLowerCase().replace(/\s+/g, '-');
+                    option.textContent = district;
+                    districtSelect.appendChild(option);
+                });
+            } else {
+                districtSelect.disabled = true;
+            }
+        }
+
+        function openAgentPopup() {
+            document.getElementById('agentName').value = userData.name;
+            document.getElementById('agentPhone').value = userData.phone;
+            document.getElementById('nicPreview').style.display = 'none';
+            document.getElementById('agentPopup').style.display = 'flex';
+        }
+
+        function closeAgentPopup() {
+            document.getElementById('agentPopup').style.display = 'none';
+        }
+
+        function captureNIC() {
+            document.getElementById('nicImage').setAttribute('capture', 'environment');
+            document.getElementById('nicImage').click();
+        }
+
+        function selectNIC() {
+            document.getElementById('nicImage').removeAttribute('capture');
+            document.getElementById('nicImage').click();
+        }
+
+        function previewNIC(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('nicPreview').src = event.target.result;
+                    document.getElementById('nicPreview').style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function submitAgentApplication(e) {
+            e.preventDefault();
+            
+            const nicImage = document.getElementById('nicImage').files[0];
+            if (!nicImage) {
+                console.log("No NIC image provided");
+                return;
+            }
+            
+            document.getElementById('loader').style.display = 'flex';
+            closeAgentPopup();
+            
+            const agentId = generateAgentId();
+            const agentData = {
+                name: document.getElementById('agentName').value,
+                phone: document.getElementById('agentPhone').value,
+                agentId: agentId,
+                agentstatus: "pending",
+                applicationDate: new Date().toISOString()
+            };
+            
+            console.log("Submitting agent application:", agentData);
+            
+            const storageRef = storage.ref(`agent_nic/${emaid}`);
+            const uploadTask = storageRef.put(nicImage);
+            
+            uploadTask.on('state_changed', 
+                (snapshot) => {
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                }, 
+                (error) => {
+                    console.error("Error uploading NIC image:", error);
+                    document.getElementById('loader').style.display = 'none';
+                }, 
+                () => {
+                    uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                        console.log('NIC image available at', downloadURL);
+                        agentData.nicImage = downloadURL;
+                        
+                        database.ref('users/' + emaid + '/agent').set(agentData)
+                            .then(() => {
+                                console.log("Agent application submitted successfully");
+                                document.getElementById('loader').style.display = 'none';
+                                checkAgentStatus();
+                            })
+                            .catch((error) => {
+                                console.error("Error submitting agent application:", error);
+                                document.getElementById('loader').style.display = 'none';
+                            });
+                    });
+                }
+            );
+        }
+
+        function generateAgentId() {
+            const randomNum = Math.floor(1000 + Math.random() * 9000);
+            return `${randomNum}-A`;
+        }
+
+        function openRevokePopup() {
+            document.getElementById('revokePopup').style.display = 'flex';
+        }
+
+        function closeRevokePopup() {
+            document.getElementById('revokePopup').style.display = 'none';
+        }
+
+        function revokeApplication() {
+            document.getElementById('loader').style.display = 'flex';
+            closeRevokePopup();
+            
+            console.log("Revoking agent application for EMA ID:", emaid);
+            
+            database.ref('users/' + emaid + '/agent').remove()
+                .then(() => {
+                    console.log("Agent application revoked successfully");
+                    document.getElementById('loader').style.display = 'none';
+                    checkAgentStatus();
+                })
+                .catch((error) => {
+                    console.error("Error revoking agent application:", error);
+                    document.getElementById('loader').style.display = 'none';
+                });
+        }
+
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+    </script>
+</body>
+</html>
