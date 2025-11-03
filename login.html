@@ -1,468 +1,557 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>EMA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMA Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        user-select: none;
-        -webkit-user-select: none;
-        -ms-user-select: none;
-      }
-
-      body,
-      html {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #121212;
-        font-family: 'Roboto', sans-serif;
-        overflow: hidden;
-        color: #fff;
-      }
-
-      #login-wrapper {
-        width: 90%;
-        max-width: 400px;
-        background: #1E1E1E;
-        padding: 2rem;
-        border-radius: 20px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-      }
-
-      #login-wrapper img {
-        width: 100px;
-        margin-bottom: 1rem;
-      }
-
-      h1 {
-        font-weight: 500;
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-        text-align: center;
-      }
-
-      .lang-buttons {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 2rem;
-      }
-
-      .lang-buttons button {
-        flex: 1;
-        padding: 0.7rem;
-        border: none;
-        border-radius: 10px;
-        background: #2A2A2A;
-        color: #fff;
-        cursor: pointer;
-        transition: 0.3s;
-      }
-
-      .lang-buttons button.active {
-        background: #4CAF50;
-      }
-
-      #continue-btn {
-        width: 100%;
-        padding: 0.8rem;
-        border: none;
-        border-radius: 12px;
-        background: #4CAF50;
-        color: #fff;
-        font-weight: 500;
-        font-size: 1rem;
-        cursor: pointer;
-        margin-bottom: 2rem;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      #continue-btn.loading::after {
-        content: '';
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        border: 3px solid #fff;
-        border-top: 3px solid transparent;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        right: 15px;
-      }
-
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
+        :root {
+            --md-sys-color-primary: #4CAF50;
+            --md-sys-color-on-primary: #FFFFFF;
+            --md-sys-color-primary-container: #E8F5E9;
+            --md-sys-color-on-primary-container: #1B5E20;
+            --md-sys-color-secondary: #81C784;
+            --md-sys-color-on-secondary: #FFFFFF;
+            --md-sys-color-secondary-container: #C8E6C9;
+            --md-sys-color-on-secondary-container: #2E7D32;
+            --md-sys-color-tertiary: #A5D6A7;
+            --md-sys-color-on-tertiary: #1B5E20;
+            --md-sys-color-background: #FAFAFA;
+            --md-sys-color-on-background: #212121;
+            --md-sys-color-surface: #FFFFFF;
+            --md-sys-color-on-surface: #212121;
+            --md-sys-color-surface-variant: #F5F5F5;
+            --md-sys-color-on-surface-variant: #424242;
+            --md-sys-color-outline: #BDBDBD;
+            --md-sys-color-outline-variant: #E0E0E0;
+            --md-sys-color-shadow: #000000;
+            --md-sys-color-scrim: #000000;
+            --md-sys-color-inverse-surface: #303030;
+            --md-sys-color-inverse-on-surface: #F5F5F5;
+            --md-sys-color-inverse-primary: #66BB6A;
+            --md-sys-color-surface-dim: #DDDDDD;
+            --md-sys-color-surface-bright: #FFFFFF;
+            --md-sys-color-surface-container-lowest: #FFFFFF;
+            --md-sys-color-surface-container-low: #F5F5F5;
+            --md-sys-color-surface-container: #EEEEEE;
+            --md-sys-color-surface-container-high: #E0E0E0;
+            --md-sys-color-surface-container-highest: #E0E0E0;
         }
 
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-      input.material {
-        width: 100%;
-        padding: 0.8rem 1rem;
-        margin-bottom: 1rem;
-        border-radius: 12px;
-        border: none;
-        background: #2A2A2A;
-        color: #fff;
-        font-size: 1rem;
-        outline: none;
-      }
-
-      input.material::placeholder {
-        color: #aaa;
-      }
-
-      button.action-btn {
-        width: 100%;
-        padding: 0.8rem;
-        border: none;
-        border-radius: 12px;
-        background: #4CAF50;
-        color: #fff;
-        font-weight: 500;
-        font-size: 1rem;
-        cursor: pointer;
-        margin-top: 1rem;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      button.action-btn.loading::after {
-        content: '';
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        border: 3px solid #fff;
-        border-top: 3px solid transparent;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        right: 15px;
-      }
-
-      .link-btn {
-        color: #4CAF50;
-        cursor: pointer;
-        text-decoration: underline;
-        margin-top: 1rem;
-      }
-
-      #qr-scan {
-        background: #2A2A2A;
-        padding: 0.5rem;
-        border-radius: 10px;
-        margin-bottom: 1rem;
-        width: 100%;
-        text-align: center;
-        cursor: pointer;
-      }
-
-      .modal-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 999;
-      }
-
-      .modal {
-        background: #1E1E1E;
-        padding: 2rem;
-        border-radius: 20px;
-        width: 90%;
-        max-width: 350px;
-        text-align: center;
-      }
-
-      .modal input {
-        margin-bottom: 1rem;
-        width: 100%;
-        padding: 0.7rem;
-        border-radius: 12px;
-        border: none;
-        background: #2A2A2A;
-        color: #fff;
-      }
-
-      .modal button {
-        margin-top: 1rem;
-        width: 100%;
-        padding: 0.8rem;
-        border: none;
-        border-radius: 12px;
-        background: #4CAF50;
-        color: #fff;
-        cursor: pointer;
-        position: relative;
-      }
-
-      .snackbar {
-        visibility: hidden;
-        min-width: 200px;
-        background: #333;
-        color: #fff;
-        text-align: center;
-        border-radius: 10px;
-        padding: 0.7rem;
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 1000;
-      }
-
-      .snackbar.show {
-        visibility: visible;
-        animation: fadein 0.5s, fadeout 0.5s 2.5s;
-      }
-
-      @keyframes fadein {
-        from {
-          bottom: 0;
-          opacity: 0;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        to {
-          bottom: 20px;
-          opacity: 1;
-        }
-      }
-
-      @keyframes fadeout {
-        from {
-          bottom: 20px;
-          opacity: 1;
-        }
-
-        to {
-          bottom: 0;
-          opacity: 0;
-        }
-      }
-
-      @media(max-width:480px) {
-        #login-wrapper {
-          padding: 1.5rem;
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--md-sys-color-background);
+            color: var(--md-sys-color-on-background);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
-        input {
-          padding: 0.7rem;
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background-color: var(--md-sys-color-surface);
+            border-radius: 28px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
         }
 
-        button {
-          padding: 0.7rem;
+        .logo-container {
+            text-align: center;
+            margin-bottom: 24px;
         }
-      }
+
+        .logo {
+            max-width: 180px;
+            height: auto;
+        }
+
+        h1 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 28px;
+            margin-bottom: 24px;
+            text-align: center;
+            color: var(--md-sys-color-primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            margin-bottom: 8px;
+            color: var(--md-sys-color-on-surface);
+            font-size: 16px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid var(--md-sys-color-outline);
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 100;
+            font-size: 16px;
+            background-color: var(--md-sys-color-surface-variant);
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--md-sys-color-primary);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+
+        .error-message {
+            color: #F44336;
+            font-size: 14px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .login-btn, .register-btn, .forgot-btn {
+            background-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            border: none;
+            border-radius: 20px;
+            padding: 14px 24px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 24px;
+            width: 100%;
+        }
+
+        .login-btn:hover, .register-btn:hover, .forgot-btn:hover {
+            background-color: var(--md-sys-color-inverse-primary);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .register-section {
+            text-align: center;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--md-sys-color-outline-variant);
+        }
+
+        .register-text {
+            margin-bottom: 16px;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        .register-btn {
+            background-color: transparent;
+            color: var(--md-sys-color-primary);
+            border: 1px solid var(--md-sys-color-primary);
+            margin-top: 16px;
+        }
+
+        .register-btn:hover {
+            background-color: var(--md-sys-color-primary-container);
+        }
+
+        .forgot-btn {
+            background-color: transparent;
+            color: var(--md-sys-color-primary);
+            border: none;
+            margin-top: 16px;
+            text-decoration: underline;
+            padding: 8px;
+        }
+
+        .forgot-btn:hover {
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            display: none;
+        }
+
+        .loader {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 8px solid rgba(255, 255, 255, 0.3);
+            border-top-color: var(--md-sys-color-primary);
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        .loader-message {
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+            display: none;
+        }
+
+        .popup-content {
+            background-color: var(--md-sys-color-surface);
+            border-radius: 28px;
+            padding: 32px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .popup-title {
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: var(--md-sys-color-on-surface);
+        }
+
+        .popup-message {
+            margin-bottom: 24px;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        .ema-id {
+            font-size: 24px;
+            font-weight: 400;
+            margin: 20px 0;
+            color: var(--md-sys-color-primary);
+        }
+
+        .use-btn, .close-btn {
+            background-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            border: none;
+            border-radius: 20px;
+            padding: 12px 24px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin: 0 8px;
+        }
+
+        .use-btn:hover, .close-btn:hover {
+            background-color: var(--md-sys-color-inverse-primary);
+        }
+
+        .close-btn {
+            background-color: transparent;
+            color: var(--md-sys-color-primary);
+            border: 1px solid var(--md-sys-color-primary);
+        }
+
+        .close-btn:hover {
+            background-color: var(--md-sys-color-primary-container);
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 24px;
+        }
     </style>
-  </head>
-  <body>
-    <div id="login-wrapper">
-      <img src="https://raw.githubusercontent.com/emaapp/ea_27nn3dt29_rep1_el____eph_ma_cu4hfd8_vew_tru28nh2_caut6/refs/heads/main/assets/images/logo_main%20(1).png" alt="EMA Logo">
-      <h1 id="welcome-text">Welcome to EMA</h1>
-      <div class="lang-buttons">
-        <button data-lang="si" class="active">Sinhala</button>
-        <button data-lang="ta">Tamil</button>
-        <button data-lang="en">English</button>
-      </div>
-      <button id="continue-btn">Continue</button>
-      <div id="login-form" style="display:none;width:100%;margin-top:1rem;">
-        <input type="text" id="ema-id" class="material" placeholder="123456-E">
-        <div id="qr-scan">Scan E-Card</div>
-        <button id="login-btn" class="action-btn">Login</button>
-        <button id="register-btn" class="action-btn">Register</button>
-        <div class="link-btn" id="forgot-btn">Forgot ID</div>
-      </div>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="https://raw.githubusercontent.com/emaapp/ea_27nn3dt29_rep1_el____eph_ma_cu4hfd8_vew_tru28nh2_caut6/refs/heads/main/assets/images/logo_main%20(1).png" alt="EMA Logo" class="logo">
+        </div>
+        <h1>Welcome to EMA</h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="emaId">EMA ID</label>
+                <input type="text" id="emaId" name="emaId" placeholder="Enter your EMA ID" required>
+                <div class="error-message" id="loginError">No user account found</div>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+        
+        <div class="register-section">
+            <p class="register-text">Still not registered?</p>
+            <button class="register-btn" id="registerBtn">Register</button>
+            <button class="forgot-btn" id="forgotBtn">Forgot ID</button>
+        </div>
     </div>
-    <div class="modal-bg" id="modal-bg">
-      <div class="modal" id="modal-content">
-        <h3 id="modal-title">Enter Details</h3>
-        <input type="text" id="modal-phone" placeholder="Phone Number">
-        <input type="text" id="modal-ic" placeholder="ID Card Number">
-        <button id="modal-submit" class="action-btn">Submit</button>
-      </div>
+
+    <div class="loader-container" id="loader">
+        <div class="loader"></div>
+        <p class="loader-message">This would take some time because of lot of data</p>
     </div>
-    <div id="snackbar" class="snackbar"></div>
-    <script type="module">
-      import {
-        initializeApp
-      } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-      import {
-        getDatabase,
-        ref,
-        get,
-        child
-      } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
-      import {
-        getAnalytics
-      } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics.js";
-      const firebaseConfig = {
-        apiKey: "AIzaSyCIE_grRa0S-0zC4KVuDwlbgMVRJhIAzKI",
-        authDomain: "emav1-cc8f8.firebaseapp.com",
-        databaseURL: "https://emav1-cc8f8-default-rtdb.firebaseio.com/",
-        projectId: "emav1-cc8f8",
-        storageBucket: "emav1-cc8f8.appspot.com",
-        messagingSenderId: "113389356749",
-        appId: "1:113389356749:web:16faff520fb638f45e8b84",
-        measurementId: "G-7EYXE00MRD"
-      };
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
-      const db = getDatabase(app);
-      const snackbar = (msg) => {
-        const sb = document.getElementById('snackbar');
-        sb.innerText = msg;
-        sb.className = 'snackbar show';
-        setTimeout(() => {
-          sb.className = 'snackbar';
-        }, 3000);
-      };
-      let selectedLang = 'si';
-      document.querySelectorAll('.lang-buttons button').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.lang-buttons button').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          selectedLang = btn.dataset.lang;
+
+    <div class="popup" id="errorPopup">
+        <div class="popup-content">
+            <h2 class="popup-title">Login Failed</h2>
+            <p class="popup-message">No user account found with the provided EMA ID.</p>
+            <button class="close-btn" id="closeErrorBtn">Close</button>
+        </div>
+    </div>
+
+    <div class="popup" id="forgotPopup">
+        <div class="popup-content">
+            <h2 class="popup-title">Find Your EMA ID</h2>
+            <form id="forgotForm">
+                <div class="form-group">
+                    <label for="forgotPhone">Phone Number</label>
+                    <input type="tel" id="forgotPhone" name="forgotPhone" placeholder="0781234567" required>
+                </div>
+                <div class="form-group">
+                    <label for="forgotProvince">Province</label>
+                    <select id="forgotProvince" name="forgotProvince" required>
+                        <option value="">Select Province</option>
+                        <option value="western">Western Province</option>
+                        <option value="central">Central Province</option>
+                        <option value="southern">Southern Province</option>
+                        <option value="northern">Northern Province</option>
+                        <option value="eastern">Eastern Province</option>
+                        <option value="north-western">North Western Province</option>
+                        <option value="north-central">North Central Province</option>
+                        <option value="uva">Uva Province</option>
+                        <option value="sabaragamuwa">Sabaragamuwa Province</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="forgotDistrict">District</label>
+                    <select id="forgotDistrict" name="forgotDistrict" required disabled>
+                        <option value="">Select District</option>
+                    </select>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="use-btn">Find ID</button>
+                    <button type="button" class="close-btn" id="closeForgotBtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="popup" id="foundPopup">
+        <div class="popup-content">
+            <h2 class="popup-title">EMA ID Found</h2>
+            <div class="ema-id" id="foundEmaId"></div>
+            <div class="form-buttons">
+                <button class="use-btn" id="useIdBtn">Use This ID</button>
+                <button class="close-btn" id="closeFoundBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyA3XHW3KeSi3ykNXJMwZAt5kSdcExxkDGs",
+            authDomain: "emausers-23173.firebaseapp.com",
+            databaseURL: "https://emausers-23173-default-rtdb.firebaseio.com",
+            projectId: "emausers-23173",
+            storageBucket: "emausers-23173.firebasestorage.app",
+            messagingSenderId: "671834680251",
+            appId: "1:671834680251:web:6b86e89e04df73b77d729e",
+            measurementId: "G-X92FMMD01R"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        console.log("Firebase initialized successfully");
+
+        const database = firebase.database();
+        console.log("Firebase services initialized");
+
+        const districts = {
+            western: ["Colombo", "Gampaha", "Kalutara"],
+            central: ["Kandy", "Matale", "Nuwara Eliya"],
+            southern: ["Galle", "Matara", "Hambantota"],
+            northern: ["Jaffna", "Kilinochchi", "Mannar", "Vavuniya", "Mullaitivu"],
+            eastern: ["Batticaloa", "Ampara", "Trincomalee"],
+            "north-western": ["Kurunegala", "Puttalam"],
+            "north-central": ["Anuradhapura", "Polonnaruwa"],
+            uva: ["Badulla", "Monaragala"],
+            sabaragamuwa: ["Ratnapura", "Kegalle"]
+        };
+
+        const forgotProvinceSelect = document.getElementById('forgotProvince');
+        const forgotDistrictSelect = document.getElementById('forgotDistrict');
+
+        forgotProvinceSelect.addEventListener('change', function() {
+            const selectedProvince = this.value;
+            forgotDistrictSelect.innerHTML = '<option value="">Select District</option>';
+            
+            if (selectedProvince && districts[selectedProvince]) {
+                forgotDistrictSelect.disabled = false;
+                districts[selectedProvince].forEach(district => {
+                    const option = document.createElement('option');
+                    option.value = district.toLowerCase().replace(/\s+/g, '-');
+                    option.textContent = district;
+                    forgotDistrictSelect.appendChild(option);
+                });
+            } else {
+                forgotDistrictSelect.disabled = true;
+            }
         });
-      });
-      document.getElementById('continue-btn').addEventListener('click', async () => {
-        const btn = document.getElementById('continue-btn');
-        btn.classList.add('loading');
-        try {
-          const texts = ["Welcome to EMA", "Enter your EMA Id", "Scan E-Card", "Login", "Register", "Forgot ID"];
-          const translations = {};
-          for (let t of texts) {
-            const resp = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(t)}&langpair=en|${selectedLang}`);
-            const data = await resp.json();
-            translations[t] = data.responseData.translatedText;
-          }
-          document.getElementById('welcome-text').innerText = translations["Welcome to EMA"];
-          document.getElementById('ema-id').placeholder = translations["Enter your EMA Id"];
-          document.getElementById('qr-scan').innerText = translations["Scan E-Card"];
-          document.getElementById('login-btn').innerText = translations["Login"];
-          document.getElementById('register-btn').innerText = translations["Register"];
-          document.getElementById('forgot-btn').innerText = translations["Forgot ID"];
-          btn.classList.remove('loading');
-          document.getElementById('login-form').style.display = 'flex';
-          if (window.Capacitor && Capacitor.Plugins && Capacitor.Plugins.Storage) {
-            const {
-              Storage
-            } = Capacitor.Plugins;
-            await Storage.set({
-              key: 'emalang',
-              value: selectedLang
-            });
-          }
-        } catch (e) {
-          btn.classList.remove('loading');
-          snackbar('Translation failed');
-        }
-      });
-      document.getElementById('login-btn').addEventListener('click', async () => {
-        const emaid = document.getElementById('ema-id').value.trim();
-        if (!emaid) {
-          snackbar('Enter EMA ID');
-          return;
-        }
-        const btn = document.getElementById('login-btn');
-        btn.classList.add('loading');
-        try {
-          const dbRef = ref(db);
-          const snapshot = await get(child(dbRef, `users/${emaid}`));
-          if (snapshot.exists()) {
-            if (window.Capacitor && Capacitor.Plugins && Capacitor.Plugins.Storage) {
-              const {
-                Storage
-              } = Capacitor.Plugins;
-              await Storage.set({
-                key: 'emaid',
-                value: emaid
-              });
-              await Storage.set({
-                key: 'emaid_signal',
-                value: emaid
-              });
-            }
+
+        const loginForm = document.getElementById('loginForm');
+        const forgotForm = document.getElementById('forgotForm');
+        const loader = document.getElementById('loader');
+        const errorPopup = document.getElementById('errorPopup');
+        const forgotPopup = document.getElementById('forgotPopup');
+        const foundPopup = document.getElementById('foundPopup');
+        const foundEmaIdElement = document.getElementById('foundEmaId');
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const emaId = document.getElementById('emaId').value;
+            console.log("Attempting to login with EMA ID:", emaId);
+            
+            database.ref('users/' + emaId).once('value')
+                .then((snapshot) => {
+                    if (snapshot.exists()) {
+                        console.log("User found:", snapshot.val());
+                        localStorage.setItem('emaId', emaId);
+                        window.location.href = 'home.html';
+                    } else {
+                        console.log("No user found with EMA ID:", emaId);
+                        document.getElementById('loginError').style.display = 'block';
+                        errorPopup.style.display = 'flex';
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error checking user:", error);
+                    document.getElementById('loginError').style.display = 'block';
+                    errorPopup.style.display = 'flex';
+                });
+        });
+
+        forgotForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const phone = document.getElementById('forgotPhone').value;
+            const province = document.getElementById('forgotProvince').value;
+            const district = document.getElementById('forgotDistrict').value;
+            
+            console.log("Searching for user with:", { phone, province, district });
+            
+            forgotPopup.style.display = 'none';
+            loader.style.display = 'flex';
+            
+            database.ref('users').once('value')
+                .then((snapshot) => {
+                    const users = snapshot.val();
+                    let foundUser = null;
+                    
+                    for (const userId in users) {
+                        const user = users[userId];
+                        if (user.phone === phone && user.province === province && user.district === district) {
+                            foundUser = user;
+                            break;
+                        }
+                    }
+                    
+                    loader.style.display = 'none';
+                    
+                    if (foundUser) {
+                        console.log("User found:", foundUser);
+                        foundEmaIdElement.textContent = foundUser.emaId;
+                        foundPopup.style.display = 'flex';
+                    } else {
+                        console.log("No user found with provided details");
+                        alert("No user found with the provided details. Please check your information and try again.");
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error searching for user:", error);
+                    loader.style.display = 'none';
+                    alert("An error occurred while searching for your account. Please try again later.");
+                });
+        });
+
+        document.getElementById('registerBtn').addEventListener('click', function() {
+            window.location.href = 'register.html';
+        });
+
+        document.getElementById('forgotBtn').addEventListener('click', function() {
+            forgotPopup.style.display = 'flex';
+        });
+
+        document.getElementById('closeErrorBtn').addEventListener('click', function() {
+            errorPopup.style.display = 'none';
+        });
+
+        document.getElementById('closeForgotBtn').addEventListener('click', function() {
+            forgotPopup.style.display = 'none';
+        });
+
+        document.getElementById('closeFoundBtn').addEventListener('click', function() {
+            foundPopup.style.display = 'none';
+        });
+
+        document.getElementById('useIdBtn').addEventListener('click', function() {
+            const emaId = foundEmaIdElement.textContent;
+            localStorage.setItem('emaId', emaId);
             window.location.href = 'home.html';
-          } else {
-            snackbar('EMA ID not found');
-          }
-        } catch (e) {
-          snackbar('Network error');
-        }
-        btn.classList.remove('loading');
-      });
-      document.getElementById('register-btn').addEventListener('click', () => window.location.href = 'register.html');
-      const modalBg = document.getElementById('modal-bg');
-      const modalSubmit = document.getElementById('modal-submit');
-      document.getElementById('forgot-btn').addEventListener('click', () => {
-        modalBg.style.display = 'flex';
-      });
-      modalSubmit.addEventListener('click', async () => {
-        const phone = document.getElementById('modal-phone').value.trim();
-        const ic = document.getElementById('modal-ic').value.trim();
-        if (!phone || !ic) {
-          snackbar('Enter all details');
-          return;
-        }
-        modalSubmit.classList.add('loading');
-        try {
-          const dbRef = ref(db);
-          const snapshot = await get(child(dbRef, 'users'));
-          let foundId = null;
-          snapshot.forEach(s => {
-            const v = s.val();
-            if (v.phone === phone && v.ic === ic) foundId = s.key;
-          });
-          if (foundId) {
-            if (window.Capacitor && Capacitor.Plugins && Capacitor.Plugins.Storage) {
-              const {
-                Storage
-              } = Capacitor.Plugins;
-              await Storage.set({
-                key: 'emaid',
-                value: foundId
-              });
-              await Storage.set({
-                key: 'emaid_signal',
-                value: foundId
-              });
+        });
+
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+                e.preventDefault();
+                return false;
             }
-            window.location.href = 'home.html';
-          } else {
-            snackbar('No matching EMA ID');
-          }
-        } catch (e) {
-          snackbar('Network error');
-        }
-        modalSubmit.classList.remove('loading');
-        modalBg.style.display = 'none';
-      });
-      document.getElementById('qr-scan').addEventListener('click', async () => {
-        // integrate QR Scanner plugin; demo placeholder:
-        document.getElementById('ema-id').value = '123456-E';
-      });
+        });
     </script>
-  </body>
+</body>
 </html>
