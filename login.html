@@ -451,4 +451,133 @@
                     forgotDistrictSelect.appendChild(option);
                 });
             } else {
-                forgotDistrict
+                forgotDistrictSelect.disabled = true;
+            }
+        });
+
+        const loginForm = document.getElementById('loginForm');
+        const forgotForm = document.getElementById('forgotForm');
+        const loader = document.getElementById('loader');
+        const errorPopup = document.getElementById('errorPopup');
+        const forgotPopup = document.getElementById('forgotPopup');
+        const foundPopup = document.getElementById('foundPopup');
+        const notFoundPopup = document.getElementById('notFoundPopup');
+        const searchErrorPopup = document.getElementById('searchErrorPopup');
+        const foundEmaIdElement = document.getElementById('foundEmaId');
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const emaId = document.getElementById('emaId').value;
+            console.log("Attempting to login with EMA ID:", emaId);
+            
+            database.ref('users/' + emaId).once('value')
+                .then((snapshot) => {
+                    if (snapshot.exists()) {
+                        console.log("User found:", snapshot.val());
+                        localStorage.setItem('emaid', emaId);
+                        window.location.href = 'home.html';
+                    } else {
+                        console.log("No user found with EMA ID:", emaId);
+                        document.getElementById('loginError').style.display = 'block';
+                        errorPopup.style.display = 'flex';
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error checking user:", error);
+                    document.getElementById('loginError').style.display = 'block';
+                    errorPopup.style.display = 'flex';
+                });
+        });
+
+        forgotForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const phone = document.getElementById('forgotPhone').value;
+            const province = document.getElementById('forgotProvince').value;
+            const district = document.getElementById('forgotDistrict').value;
+            
+            console.log("Searching for user with:", { phone, province, district });
+            
+            forgotPopup.style.display = 'none';
+            loader.style.display = 'flex';
+            
+            database.ref('users').once('value')
+                .then((snapshot) => {
+                    const users = snapshot.val();
+                    let foundUser = null;
+                    
+                    for (const userId in users) {
+                        const user = users[userId];
+                        if (user.phone === phone && user.province === province && user.district === district) {
+                            foundUser = user;
+                            break;
+                        }
+                    }
+                    
+                    loader.style.display = 'none';
+                    
+                    if (foundUser) {
+                        console.log("User found:", foundUser);
+                        foundEmaIdElement.textContent = foundUser.emaId;
+                        foundPopup.style.display = 'flex';
+                    } else {
+                        console.log("No user found with provided details");
+                        notFoundPopup.style.display = 'flex';
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error searching for user:", error);
+                    loader.style.display = 'none';
+                    searchErrorPopup.style.display = 'flex';
+                });
+        });
+
+        document.getElementById('registerBtn').addEventListener('click', function() {
+            window.location.href = 'register.html';
+        });
+
+        document.getElementById('forgotBtn').addEventListener('click', function() {
+            forgotPopup.style.display = 'flex';
+        });
+
+        document.getElementById('closeErrorBtn').addEventListener('click', function() {
+            errorPopup.style.display = 'none';
+        });
+
+        document.getElementById('closeForgotBtn').addEventListener('click', function() {
+            forgotPopup.style.display = 'none';
+        });
+
+        document.getElementById('closeFoundBtn').addEventListener('click', function() {
+            foundPopup.style.display = 'none';
+        });
+
+        document.getElementById('useIdBtn').addEventListener('click', function() {
+            const emaId = foundEmaIdElement.textContent;
+            localStorage.setItem('emaid', emaId);
+            window.location.href = 'home.html';
+        });
+
+        document.getElementById('closeNotFoundBtn').addEventListener('click', function() {
+            notFoundPopup.style.display = 'none';
+        });
+
+        document.getElementById('closeSearchErrorBtn').addEventListener('click', function() {
+            searchErrorPopup.style.display = 'none';
+        });
+
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+    </script>
+</body>
+</html>
